@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <radial:RadialSlider Width="300" Height="300"/>
+        <radial:RadialSlider/>
     </Grid>
 </Page>

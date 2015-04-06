@@ -20,7 +20,7 @@ namespace RadialControls
             DependencyProperty.Register("Value", typeof (double), typeof (RadialSlider), 
                 new PropertyMetadata(default(double)));
 
-        private UIElement _slider;
+        private FrameworkElement _slider;
 
         private readonly TranslateTransform _translation = new TranslateTransform();
         private readonly RotateTransform _rotation = new RotateTransform();
@@ -52,7 +52,7 @@ namespace RadialControls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _slider = GetTemplateChild("PART_Slider") as UIElement;
+            _slider = GetTemplateChild("PART_Slider") as FrameworkElement;
             if (_slider == null) return;
 
             MakeSlidable(_slider);
@@ -130,7 +130,7 @@ namespace RadialControls
 
         #region Private Members
 
-        private void MakeSlidable(UIElement element)
+        private void MakeSlidable(FrameworkElement element)
         {
             element.RenderTransform = new TransformGroup
             {
@@ -139,6 +139,9 @@ namespace RadialControls
                         _translation, _rotation
                     }
             };
+
+            element.VerticalAlignment = VerticalAlignment.Center;
+            element.HorizontalAlignment = HorizontalAlignment.Center;
         }
 
         private void MakeDragDrop(UIElement element)
