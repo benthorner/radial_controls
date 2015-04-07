@@ -10,11 +10,28 @@
     d:DesignWidth="400">
 
     <Grid Background="Black">
-        <Ellipse Width="300" Height="300" Fill="DeepSkyBlue"/>
-        <local:RadialSlider Value="180"/>
-        <Ellipse Width="220" Height="220" Fill="RoyalBlue"/>
-        <local:RadialSlider Width="220" Height="220"  Value="220"/>
-        <Ellipse Width="140" Height="140" Fill="DarkBlue"/>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="SemiBold" Margin="163,132">07:30</TextBlock>
+        <Grid x:Name="PART_HourDial">
+            <Viewbox>
+                <Ellipse Width="1" Height="1" Fill="DeepSkyBlue"/>
+            </Viewbox>
+            
+            <local:RadialSlider Value="180"/>
+        </Grid>
+        
+        <Grid x:Name="PART_MinuteDial" Width="220" Height="220">
+            <Viewbox>
+                <Ellipse Width="1" Height="1" Fill="RoyalBlue"/>
+            </Viewbox>
+
+            <local:RadialSlider Value="220"/>
+        </Grid>
+        
+        <Grid x:Name="PART_Content" Width="140" Height="140">
+            <Viewbox>
+                <Ellipse Width="1" Height="1" Fill="DarkBlue"/>
+            </Viewbox>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="SemiBold">07:30</TextBlock>
+        </Grid>
     </Grid>
 </UserControl>
