@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Page Include="Controls\RadialTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -46,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\RadialSlider.cs" />
+    <Compile Include="Controls\RadialTimePicker.xaml.cs">
+      <DependentUpon>RadialTimePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Point.cs" />
     <Compile Include="Utilities\Vector.cs" />

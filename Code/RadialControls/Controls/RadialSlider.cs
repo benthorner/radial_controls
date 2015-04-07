@@ -9,7 +9,7 @@ using RadialControls.Utilities;
 
 namespace RadialControls
 {
-    [TemplatePart(Name="PART_Slider", Type = typeof(Button))]
+    [TemplatePart(Name="PART_Slider", Type = typeof(FrameworkElement))]
     public sealed class RadialSlider : Control
     {
         public static readonly DependencyProperty SizeProperty =
