@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RadialControls"
+    xmlns:utilities="using:RadialControls.Utilities"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -10,28 +11,44 @@
     d:DesignWidth="400">
 
     <Grid Background="Black">
-        <Grid x:Name="PART_HourDial">
-            <Viewbox>
-                <Ellipse Width="1" Height="1" Fill="DeepSkyBlue"/>
-            </Viewbox>
-            
-            <local:RadialSlider Value="180"/>
-        </Grid>
+        <Grid.Resources>
+            <utilities:HoursDegreesConverter x:Key="HoursConverter"/>
+            <utilities:MinutesDegreesConverter x:Key="MinutesConverter"/>
+            <utilities:PickerTimeConverter x:Key="TimeConverter"/>
+        </Grid.Resources>
         
-        <Grid x:Name="PART_MinuteDial" Width="220" Height="220">
-            <Viewbox>
-                <Ellipse Width="1" Height="1" Fill="RoyalBlue"/>
-            </Viewbox>
+        <local:Pyramid>
+            <Grid x:Name="PART_HourDial" local:Pyramid.Step="{Binding RimThickness}">
+                <Viewbox>
+                    <Ellipse Width="1" Height="1" Fill="DeepSkyBlue"/>
+                </Viewbox>
 
-            <local:RadialSlider Value="220"/>
-        </Grid>
-        
-        <Grid x:Name="PART_Content" Width="140" Height="140">
-            <Viewbox>
-                <Ellipse Width="1" Height="1" Fill="DarkBlue"/>
-            </Viewbox>
+                <local:RadialSlider Size="{Binding HandSize}" Value="{
+                    Binding Minutes, Mode=TwoWay,
+                    Converter={StaticResource MinutesConverter}
+                }"/>
+            </Grid>
 
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="SemiBold">07:30</TextBlock>
-        </Grid>
+            <Grid x:Name="PART_MinuteDial" local:Pyramid.Step="{Binding RimThickness}">
+                <Viewbox>
+                    <Ellipse Width="1" Height="1" Fill="RoyalBlue"/>
+                </Viewbox>
+
+                <local:RadialSlider Size="{Binding HandSize}" Value="{
+                    Binding Hours, Mode=TwoWay,
+                    Converter={StaticResource HoursConverter}
+                }"/>
+            </Grid>
+
+            <Grid x:Name="PART_Content">
+                <Viewbox>
+                    <Ellipse Width="1" Height="1" Fill="DarkBlue"/>
+                </Viewbox>
+
+                <TextBlock FontSize="30" FontWeight="SemiBold"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Text="{Binding Time, Converter={StaticResource TimeConverter}}"/>
+            </Grid>
+        </local:Pyramid>
     </Grid>
 </UserControl>

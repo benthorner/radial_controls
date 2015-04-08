@@ -54,10 +54,15 @@
       <DependentUpon>RadialTimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Pyramid.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Point.cs" />
-    <Compile Include="Utilities\Vector.cs" />
+    <Compile Include="Utilities\Conversion\HoursDegreesConverter.cs" />
+    <Compile Include="Utilities\Conversion\MinutesDegreesConverter.cs" />
+    <Compile Include="Utilities\Conversion\PickerTimeConverter.cs" />
+    <Compile Include="Utilities\Geometry\Point.cs" />
+    <Compile Include="Utilities\Geometry\Vector.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
