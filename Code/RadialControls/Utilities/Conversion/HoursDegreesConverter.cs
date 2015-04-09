@@ -7,7 +7,7 @@ namespace RadialControls.Utilities
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (((double) value) / 12) * 360;
+            return (((double) (int) value) / 12) * 360;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

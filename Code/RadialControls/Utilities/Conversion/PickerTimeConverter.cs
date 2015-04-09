@@ -8,13 +8,17 @@ namespace RadialControls.Utilities
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var picker = (RadialTimePicker) value;
-            if (picker == null) return "00:00";
+
+            if (picker == null)
+            {
+                return "00:00";
+            }
 
             var offset = picker.Period == "AM" ? 0 : 12;
-            var hours = Math.Floor(picker.Hours + offset);
-            var minutes = Math.Floor(picker.Minutes);
 
-            return String.Format("{0:00}:{1:00}", hours, minutes);
+            return String.Format(
+                "{0:00}:{1:00}", picker.Hours + offset, picker.Minutes
+            );
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
