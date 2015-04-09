@@ -3,13 +3,14 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using RadialControls.Annotations;
 
 namespace RadialControls
 {
     public sealed partial class RadialTimePicker : UserControl
     {
         // TODO Expose control template for hand
+
+        #region Dependency Properties
 
         public static readonly DependencyProperty HandSizeProperty =
             DependencyProperty.Register("HandSize", typeof (double), typeof (RadialTimePicker), 
@@ -20,12 +21,12 @@ namespace RadialControls
                 new PropertyMetadata(new Thickness(40.0)));
 
         public static readonly DependencyProperty HoursProperty =
-            DependencyProperty.Register("Hours", typeof (int), typeof (RadialTimePicker), 
-                new PropertyMetadata(default(int), OnHoursChanged));
+            DependencyProperty.Register("Hours", typeof (double), typeof (RadialTimePicker), 
+                new PropertyMetadata(default(double), OnHoursChanged));
 
         public static readonly DependencyProperty MinutesProperty =
-            DependencyProperty.Register("Minutes", typeof (int), typeof (RadialTimePicker),
-                new PropertyMetadata(default(int), OnMinutesChanged));
+            DependencyProperty.Register("Minutes", typeof (double), typeof (RadialTimePicker),
+                new PropertyMetadata(default(double), OnMinutesChanged));
 
         public static readonly DependencyProperty PeriodProperty =
             DependencyProperty.Register("Period", typeof (string), typeof (RadialTimePicker), 
@@ -34,6 +35,8 @@ namespace RadialControls
         public static readonly DependencyProperty TimeProperty =
             DependencyProperty.Register("Time", typeof (RadialTimePicker), typeof (RadialTimePicker), 
                 new PropertyMetadata(default(RadialTimePicker)));
+
+        #endregion
 
         public RadialTimePicker()
         {
@@ -61,15 +64,15 @@ namespace RadialControls
             set { SetValue(PeriodProperty, value); }
         }
 
-        public int Minutes
+        public double Minutes
         {
-            get { return (int)GetValue(MinutesProperty); }
+            get { return (double)GetValue(MinutesProperty); }
             set { SetValue(MinutesProperty, value); }
         }
 
-        public int Hours
+        public double Hours
         {
-            get { return (int)GetValue(HoursProperty); }
+            get { return (double)GetValue(HoursProperty); }
             set { SetValue(HoursProperty, value); }
         }
 
@@ -85,14 +88,17 @@ namespace RadialControls
 
         private static void OnHoursChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            var oldValue = (int) e.OldValue;
-            var newValue = (int) e.NewValue;
+            var oldValue = (double) e.OldValue;
+            var newValue = (double) e.NewValue;
+
+            var period = (string) o.GetValue(PeriodProperty);
+            var minutes = (double) o.GetValue(MinutesProperty);
 
             if (Math.Abs(newValue - oldValue) > 9)
             {
                 if ((newValue < 3) || (newValue > 9))
                 {
-                    switch ((string)o.GetValue(PeriodProperty))
+                    switch (period)
                     {
                         case "AM":
                             o.SetValue(PeriodProperty, "PM");
@@ -104,33 +110,42 @@ namespace RadialControls
                 }
             }
 
+            o.SetValue(MinutesProperty, (newValue % 1) * 60);
+
             o.ClearValue(TimeProperty);
             o.SetValue(TimeProperty, o);
         }
 
         private static void OnMinutesChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            var oldValue = (int) e.OldValue;
-            var newValue = (int) e.NewValue;
+            var oldValue = (double) e.OldValue;
+            var newValue = (double) e.NewValue;
+
+            var hours = (double) o.GetValue(HoursProperty);
 
             if (Math.Abs(newValue - oldValue) > 45)
             {
-                var hours = (int)o.GetValue(HoursProperty);
-
                 if (newValue < 15)
                 {
-                    o.SetValue(HoursProperty, (hours + 1) % 12);
+                    hours = (hours + 1) % 12;
                 }
 
                 if (newValue > 45)
                 {
-                    o.SetValue(HoursProperty, (12 + hours - 1) % 12);
+                    hours = (12 + hours - 1) % 12;
                 }   
             }
+
+            hours = Math.Floor(hours) + newValue / 60;
+            o.SetValue(HoursProperty, hours);
 
             o.ClearValue(TimeProperty);
             o.SetValue(TimeProperty, o);
         }
+
+        #endregion
+
+        #region Private Members
 
         #endregion
     }
