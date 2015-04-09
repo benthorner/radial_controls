@@ -54,7 +54,6 @@
       <DependentUpon>RadialTimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Pyramid.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Conversion\HoursDegreesConverter.cs" />
     <Compile Include="Utilities\Conversion\MinutesDegreesConverter.cs" />

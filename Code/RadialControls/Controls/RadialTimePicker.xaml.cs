@@ -1,15 +1,17 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using RadialControls.Annotations;
 
 namespace RadialControls
 {
     public sealed partial class RadialTimePicker : UserControl
     {
-        // TODO Expose control template for hand
+        // TODO Expose control template for hands
+        // TODO Expose dial colours
+        // TODO Expose content
+        // TODO Support editable/non-editable states
+
+        #region Dependency Properties
 
         public static readonly DependencyProperty HandSizeProperty =
             DependencyProperty.Register("HandSize", typeof (double), typeof (RadialTimePicker), 
@@ -27,16 +29,15 @@ namespace RadialControls
             DependencyProperty.Register("Minutes", typeof (int), typeof (RadialTimePicker),
                 new PropertyMetadata(default(int), OnMinutesChanged));
 
-        public static readonly DependencyProperty PeriodProperty =
-            DependencyProperty.Register("Period", typeof (string), typeof (RadialTimePicker), 
-                new PropertyMetadata("AM"));
-
         public static readonly DependencyProperty TimeProperty =
             DependencyProperty.Register("Time", typeof (RadialTimePicker), typeof (RadialTimePicker), 
                 new PropertyMetadata(default(RadialTimePicker)));
 
+        #endregion
+
         public RadialTimePicker()
         {
+            Period = "AM";
             InitializeComponent();
             DataContext = this;
         }
@@ -53,12 +54,6 @@ namespace RadialControls
         {
             get { return (Thickness)GetValue(RimThicknessProperty); }
             set { SetValue(RimThicknessProperty, value); }
-        }
-
-        public string Period
-        {
-            get { return (string)GetValue(PeriodProperty); }
-            set { SetValue(PeriodProperty, value); }
         }
 
         public int Minutes
@@ -79,12 +74,16 @@ namespace RadialControls
             set { SetValue(TimeProperty, value); }
         }
 
+        public string Period { get; set; }
+
         #endregion
 
         #region Event Handlers
 
         private static void OnHoursChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
+            var picker = (RadialTimePicker) o;
+
             var oldValue = (int) e.OldValue;
             var newValue = (int) e.NewValue;
 
@@ -92,13 +91,13 @@ namespace RadialControls
             {
                 if ((newValue < 3) || (newValue > 9))
                 {
-                    switch ((string)o.GetValue(PeriodProperty))
+                    switch (picker.Period)
                     {
                         case "AM":
-                            o.SetValue(PeriodProperty, "PM");
+                            picker.Period = "PM";
                             break;
                         case "PM":
-                            o.SetValue(PeriodProperty, "AM");
+                            picker.Period = "AM";
                             break;
                     }
                 }
@@ -110,24 +109,6 @@ namespace RadialControls
 
         private static void OnMinutesChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            var oldValue = (int) e.OldValue;
-            var newValue = (int) e.NewValue;
-
-            if (Math.Abs(newValue - oldValue) > 45)
-            {
-                var hours = (int)o.GetValue(HoursProperty);
-
-                if (newValue < 15)
-                {
-                    o.SetValue(HoursProperty, (hours + 1) % 12);
-                }
-
-                if (newValue > 45)
-                {
-                    o.SetValue(HoursProperty, (12 + hours - 1) % 12);
-                }   
-            }
-
             o.ClearValue(TimeProperty);
             o.SetValue(TimeProperty, o);
         }

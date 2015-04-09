@@ -12,6 +12,8 @@ namespace RadialControls
     [TemplatePart(Name="PART_Slider", Type = typeof(FrameworkElement))]
     public sealed class RadialSlider : Control
     {
+        #region Dependency Properties
+
         public static readonly DependencyProperty SizeProperty =
             DependencyProperty.Register("Size", typeof (double), typeof (RadialSlider), 
                 new PropertyMetadata(default(double)));
@@ -19,6 +21,8 @@ namespace RadialControls
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof (double), typeof (RadialSlider), 
                 new PropertyMetadata(default(double)));
+
+        #endregion
 
         private FrameworkElement _slider;
 
@@ -35,6 +39,8 @@ namespace RadialControls
             );
         }
 
+        #region Properties
+
         public double Value
         {
             get { return (double)GetValue(ValueProperty); }
@@ -46,6 +52,8 @@ namespace RadialControls
             get { return (double)GetValue(SizeProperty); }
             set { SetValue(SizeProperty, value); }
         }
+
+        #endregion
 
         #region UIElement Overrides
 
