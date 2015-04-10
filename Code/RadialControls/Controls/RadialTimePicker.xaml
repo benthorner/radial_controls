@@ -18,23 +18,23 @@
         </Grid.Resources>
         
         <local:Pyramid>
-            <Grid x:Name="PART_HourDial" local:Pyramid.Step="{Binding RimThickness}">
+            <Grid x:Name="PART_HourDial" local:Pyramid.Step="40">
                 <Viewbox>
                     <Ellipse Width="1" Height="1" Fill="DeepSkyBlue"/>
                 </Viewbox>
 
-                <local:RadialSlider Size="{Binding HandSize}" Value="{
+                <local:RadialSlider Value="{
                     Binding Minutes, Mode=TwoWay,
                     Converter={StaticResource MinutesConverter}
                 }"/>
             </Grid>
 
-            <Grid x:Name="PART_MinuteDial" local:Pyramid.Step="{Binding RimThickness}">
+            <Grid x:Name="PART_MinuteDial" local:Pyramid.Step="40">
                 <Viewbox>
                     <Ellipse Width="1" Height="1" Fill="RoyalBlue"/>
                 </Viewbox>
 
-                <local:RadialSlider Size="{Binding HandSize}" Value="{
+                <local:RadialSlider Value="{
                     Binding Hours, Mode=TwoWay,
                     Converter={StaticResource HoursConverter}
                 }"/>
@@ -48,6 +48,8 @@
                 <TextBlock FontSize="30" FontWeight="SemiBold"
                            HorizontalAlignment="Center" VerticalAlignment="Center" 
                            Text="{Binding Time, Converter={StaticResource TimeConverter}}"/>
+                
+                <ContentPresenter/>
             </Grid>
         </local:Pyramid>
     </Grid>

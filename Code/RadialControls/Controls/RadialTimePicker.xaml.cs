@@ -13,14 +13,6 @@ namespace RadialControls
 
         #region Dependency Properties
 
-        public static readonly DependencyProperty HandSizeProperty =
-            DependencyProperty.Register("HandSize", typeof (double), typeof (RadialTimePicker), 
-                new PropertyMetadata(40.0));
-
-        public static readonly DependencyProperty RimThicknessProperty =
-            DependencyProperty.Register("RimThickness", typeof (Thickness), typeof (RadialTimePicker), 
-                new PropertyMetadata(new Thickness(40.0)));
-
         public static readonly DependencyProperty HoursProperty =
             DependencyProperty.Register("Hours", typeof (int), typeof (RadialTimePicker), 
                 new PropertyMetadata(default(int), OnHoursChanged));
@@ -43,18 +35,6 @@ namespace RadialControls
         }
 
         #region Properties
-
-        public double HandSize
-        {
-            get { return (double)GetValue(HandSizeProperty); }
-            set { SetValue(HandSizeProperty, value); }
-        }
-
-        public Thickness RimThickness
-        {
-            get { return (Thickness)GetValue(RimThicknessProperty); }
-            set { SetValue(RimThicknessProperty, value); }
-        }
 
         public int Minutes
         {
@@ -111,6 +91,8 @@ namespace RadialControls
         {
             o.ClearValue(TimeProperty);
             o.SetValue(TimeProperty, o);
+
+            //o.SetValue(ContentProperty, "02:00");
         }
 
         #endregion
