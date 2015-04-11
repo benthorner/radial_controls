@@ -5,7 +5,7 @@ using RadialControls.Utilities;
 
 namespace RadialControls
 {
-    public sealed partial class RadialTimePicker : UserControl
+    public sealed partial class TimePicker : UserControl
     {
         // TODO Expose control template for hands
         // TODO Expose dial colours
@@ -15,12 +15,12 @@ namespace RadialControls
         #region Dependency Properties
 
         public static readonly DependencyProperty TimeProperty =
-            DependencyProperty.Register("Time", typeof (Time), typeof (RadialTimePicker), 
+            DependencyProperty.Register("Time", typeof (Time), typeof (TimePicker), 
                 new PropertyMetadata(new Time()));
 
         #endregion
 
-        public RadialTimePicker()
+        public TimePicker()
         {
             InitializeComponent();
             DataContext = this;

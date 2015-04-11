@@ -10,6 +10,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <radial:RadialSlider Width="300" Height="300"/>
+        <radial:Slider Width="300" Height="300"/>
     </Grid>
 </Page>

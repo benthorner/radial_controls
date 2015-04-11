@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RadialControls">
 
-    <Style TargetType="local:RadialSlider">       
+    <Style TargetType="local:Slider">       
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:RadialSlider">
+                <ControlTemplate TargetType="local:Slider">
                     <Grid x:Name="PART_Slider" 
                           VerticalAlignment="Center" 
                           HorizontalAlignment="Center">

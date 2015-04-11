@@ -39,7 +39,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\RadialTimePicker.xaml">
+    <Page Include="Controls\TimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -53,9 +53,9 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\RadialSlider.cs" />
-    <Compile Include="Controls\RadialTimePicker.xaml.cs">
-      <DependentUpon>RadialTimePicker.xaml</DependentUpon>
+    <Compile Include="Controls\Slider.cs" />
+    <Compile Include="Controls\TimePicker.xaml.cs">
+      <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Panels\Pyramid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

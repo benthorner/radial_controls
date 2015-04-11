@@ -10,16 +10,16 @@ using RadialControls.Utilities;
 namespace RadialControls
 {
     [TemplatePart(Name="PART_Slider", Type = typeof(FrameworkElement))]
-    public sealed class RadialSlider : Control
+    public sealed class Slider : Control
     {
         #region Dependency Properties
 
         public static readonly DependencyProperty SizeProperty =
-            DependencyProperty.Register("Size", typeof (double), typeof (RadialSlider), 
+            DependencyProperty.Register("Size", typeof (double), typeof (Slider), 
                 new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof (double), typeof (RadialSlider), 
+            DependencyProperty.Register("Value", typeof (double), typeof (Slider), 
                 new PropertyMetadata(default(double)));
 
         #endregion
@@ -29,9 +29,9 @@ namespace RadialControls
         private readonly TranslateTransform _translation = new TranslateTransform();
         private readonly RotateTransform _rotation = new RotateTransform();
 
-        public RadialSlider()
+        public Slider()
         {
-            DefaultStyleKey = typeof(RadialSlider);
+            DefaultStyleKey = typeof(Slider);
 
             BindingOperations.SetBinding(
                 _rotation, RotateTransform.AngleProperty,

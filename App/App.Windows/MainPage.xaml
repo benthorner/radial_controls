@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <radial:RadialTimePicker/>
+        <radial:TimePicker/>
     </Grid>
 </Page>
