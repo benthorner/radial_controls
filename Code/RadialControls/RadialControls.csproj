@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\RadialTimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -55,13 +59,13 @@
     </Compile>
     <Compile Include="Panels\Pyramid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Conversion\HoursDegreesConverter.cs" />
-    <Compile Include="Utilities\Conversion\MinutesDegreesConverter.cs" />
-    <Compile Include="Utilities\Conversion\PickerTimeConverter.cs" />
-    <Compile Include="Utilities\Geometry\Point.cs" />
-    <Compile Include="Utilities\Geometry\Vector.cs" />
+    <Compile Include="Utilities\Converters\HoursDegreesConverter.cs" />
+    <Compile Include="Utilities\Converters\MinutesDegreesConverter.cs" />
+    <Compile Include="Utilities\Converters\PickerTimeConverter.cs" />
+    <Compile Include="Utilities\Models\Point.cs" />
+    <Compile Include="Utilities\Models\Time.cs" />
+    <Compile Include="Utilities\Models\Vector.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

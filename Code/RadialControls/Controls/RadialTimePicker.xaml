@@ -24,7 +24,7 @@
                 </Viewbox>
 
                 <local:RadialSlider Value="{
-                    Binding Minutes, Mode=TwoWay,
+                    Binding Time.Minutes, Mode=TwoWay,
                     Converter={StaticResource MinutesConverter}
                 }"/>
             </Grid>
@@ -35,7 +35,7 @@
                 </Viewbox>
 
                 <local:RadialSlider Value="{
-                    Binding Hours, Mode=TwoWay,
+                    Binding Time.Hours, Mode=TwoWay,
                     Converter={StaticResource HoursConverter}
                 }"/>
             </Grid>
@@ -46,10 +46,8 @@
                 </Viewbox>
 
                 <TextBlock FontSize="30" FontWeight="SemiBold"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           Text="{Binding Time, Converter={StaticResource TimeConverter}}"/>
-                
-                <ContentPresenter/>
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="{Binding Time.Hours}"/>
             </Grid>
         </local:Pyramid>
     </Grid>
