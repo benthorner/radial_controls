@@ -1,6 +1,6 @@
 ﻿using Windows.Foundation;
 
-namespace RadialControls.Utilities
+namespace RadialControls.ViewModels
 {
     public static class PointExtensions
     {

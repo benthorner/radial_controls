@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RadialControls.Utilities
+namespace RadialControls.ViewModels
 {
     public class Vector
     {
@@ -9,8 +9,8 @@ namespace RadialControls.Utilities
             X = x; Y = y;
         }
 
-        public double X { get; set; }
-        public double Y { get; set; }
+        double X { get; set; }
+        double Y { get; set; }
 
         public double Length
         {

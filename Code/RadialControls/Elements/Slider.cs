@@ -5,9 +5,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using RadialControls.Utilities;
+using RadialControls.ViewModels;
 
-namespace RadialControls
+namespace RadialControls.Elements
 {
     [TemplatePart(Name="PART_Slider", Type = typeof(FrameworkElement))]
     public sealed class Slider : Control

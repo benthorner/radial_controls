@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace RadialControls.Utilities
+namespace RadialControls.Converters
 {
     public class MinutesDegreesConverter : IValueConverter
     {

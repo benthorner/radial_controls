@@ -1,20 +1,21 @@
 ﻿<UserControl
-    x:Class="RadialControls.TimePicker"
+    x:Class="RadialControls.Elements.TimePicker"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RadialControls"
-    xmlns:utilities="using:RadialControls.Utilities"
+    xmlns:local="using:RadialControls.Elements"
+    xmlns:converters="using:RadialControls.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:markupExtensions="using:RadialControls.MarkupExtensions"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <Grid Background="Black">
         <Grid.Resources>
-            <utilities:HoursDegreesConverter x:Key="HoursConverter"/>
-            <utilities:MinutesDegreesConverter x:Key="MinutesConverter"/>
-            <utilities:PickerTimeConverter x:Key="TimeConverter"/>
+            <converters:HoursDegreesConverter x:Key="HoursConverter"/>
+            <converters:MinutesDegreesConverter x:Key="MinutesConverter"/>
         </Grid.Resources>
         
         <local:Pyramid>
@@ -24,7 +25,7 @@
                 </Viewbox>
 
                 <local:Slider Value="{
-                    Binding Time.Minutes, Mode=TwoWay,
+                    Binding Minutes, Mode=TwoWay,
                     Converter={StaticResource MinutesConverter}
                 }"/>
             </Grid>
@@ -35,7 +36,7 @@
                 </Viewbox>
 
                 <local:Slider Value="{
-                    Binding Time.Hours, Mode=TwoWay,
+                    Binding Hours, Mode=TwoWay,
                     Converter={StaticResource HoursConverter}
                 }"/>
             </Grid>
@@ -47,7 +48,7 @@
 
                 <TextBlock FontSize="30" FontWeight="SemiBold"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Text="{Binding Time.Hours}"/>
+                           Text="{Binding Self}"/>
             </Grid>
         </local:Pyramid>
     </Grid>

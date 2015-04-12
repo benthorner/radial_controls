@@ -39,7 +39,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TimePicker.xaml">
+    <Page Include="Elements\TimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -53,18 +53,18 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Slider.cs" />
-    <Compile Include="Controls\TimePicker.xaml.cs">
+    <Compile Include="Elements\Slider.cs" />
+    <Compile Include="Elements\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Panels\Pyramid.cs" />
+    <Compile Include="Elements\Pyramid.cs" />
+    <Compile Include="MultiBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Converters\HoursDegreesConverter.cs" />
-    <Compile Include="Utilities\Converters\MinutesDegreesConverter.cs" />
-    <Compile Include="Utilities\Converters\PickerTimeConverter.cs" />
-    <Compile Include="Utilities\Models\Point.cs" />
-    <Compile Include="Utilities\Models\Time.cs" />
-    <Compile Include="Utilities\Models\Vector.cs" />
+    <Compile Include="Converters\HoursDegreesConverter.cs" />
+    <Compile Include="Converters\MinutesDegreesConverter.cs" />
+    <Compile Include="ViewModels\Point.cs" />
+    <Compile Include="ViewModels\Time.cs" />
+    <Compile Include="ViewModels\Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
