@@ -2,16 +2,15 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using RadialControls.ViewModels;
+using RadialControls.Converters;
 
 namespace RadialControls.Elements
 {
-    public sealed partial class TimePicker : UserControl
+    [TemplatePart(Name = "PART_HoursSlider", Type = typeof(Slider))]
+    [TemplatePart(Name = "PART_MinutesSlider", Type = typeof(Slider))]
+    [TemplatePart(Name = "PART_TimeReadout", Type = typeof(TextBlock))]
+    public class TimePicker : Control
     {
-        // TODO Expose templates for rings and content
-        // TODO Use background/foreground for ring colours
-        // TODO Support editable/non-editable states
-
         #region Dependency Properties
 
         public static readonly DependencyProperty HoursProperty = DependencyProperty.Register(
@@ -24,16 +23,27 @@ namespace RadialControls.Elements
             "Period", typeof(string), typeof(TimePicker), new PropertyMetadata("AM", UpdateSelf));
 
         public static readonly DependencyProperty SelfProperty = DependencyProperty.Register(
-            "Self", typeof(Time), typeof(TimePicker), new PropertyMetadata(default(TimePicker)));
+            "Self", typeof(TimePicker), typeof(TimePicker), new PropertyMetadata(default(TimePicker)));
 
         #endregion
 
         public TimePicker()
         {
-            InitializeComponent();
-            DataContext = this;
-            Self = this;
+            DefaultStyleKey = typeof(TimePicker);
+            SetValue(SelfProperty, this);
         }
+
+        #region UIElement Overrides
+        
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            BindControlParts();
+
+            VisualStateManager.GoToState(this, "Editing", false);
+        }
+
+        #endregion
 
         #region Properties
 
@@ -101,7 +111,6 @@ namespace RadialControls.Elements
 
         #region Object Overrides
 
-
         public override string ToString()
         {
             var offset = (Period == "PM") ? 12 : 0;
@@ -109,6 +118,34 @@ namespace RadialControls.Elements
             return String.Format(
                 "{0:00}:{1:00}", Hours + offset, Minutes
             );
+        }
+
+        #endregion
+
+        #region Private Members
+
+        private void BindControlParts()
+        {
+            BindingOperations.SetBinding(GetTemplateChild("PART_TimeReadout"), TextBlock.TextProperty,
+              new Binding { Source = this, Path = new PropertyPath("Self") });
+
+            BindingOperations.SetBinding(GetTemplateChild("PART_HoursSlider"), Slider.ValueProperty,
+                new Binding
+                {
+                    Source = this,
+                    Path = new PropertyPath("Hours"),
+                    Converter = new HoursDegreesConverter(),
+                    Mode = BindingMode.TwoWay
+                });
+
+            BindingOperations.SetBinding(GetTemplateChild("PART_MinutesSlider"), Slider.ValueProperty,
+                new Binding
+                {
+                    Source = this,
+                    Path = new PropertyPath("Minutes"),
+                    Converter = new MinutesDegreesConverter(),
+                    Mode = BindingMode.TwoWay
+                });
         }
 
         #endregion

@@ -39,7 +39,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Elements\TimePicker.xaml">
+    <Page Include="Elements\TimePickerOld.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -53,9 +53,11 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\Circle.cs" />
     <Compile Include="Elements\Slider.cs" />
-    <Compile Include="Elements\TimePicker.xaml.cs">
-      <DependentUpon>TimePicker.xaml</DependentUpon>
+    <Compile Include="Elements\TimePicker.cs" />
+    <Compile Include="Elements\TimePickerOld.xaml.cs">
+      <DependentUpon>TimePickerOld.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\Pyramid.cs" />
     <Compile Include="MultiBinding.cs" />
@@ -63,7 +65,6 @@
     <Compile Include="Converters\HoursDegreesConverter.cs" />
     <Compile Include="Converters\MinutesDegreesConverter.cs" />
     <Compile Include="ViewModels\Point.cs" />
-    <Compile Include="ViewModels\Time.cs" />
     <Compile Include="ViewModels\Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
