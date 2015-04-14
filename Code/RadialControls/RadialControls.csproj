@@ -39,10 +39,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Elements\TimePickerOld.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -53,17 +49,15 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Elements\Circle.cs" />
+    <Compile Include="Elements\Disc.cs" />
     <Compile Include="Elements\Slider.cs" />
-    <Compile Include="Elements\TimePicker.cs" />
-    <Compile Include="Elements\TimePickerOld.xaml.cs">
-      <DependentUpon>TimePickerOld.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Elements\Clock.cs" />
+    <Compile Include="Elements\ClockPresenter.cs" />
     <Compile Include="Elements\Pyramid.cs" />
     <Compile Include="MultiBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Converters\HoursDegreesConverter.cs" />
-    <Compile Include="Converters\MinutesDegreesConverter.cs" />
+    <Compile Include="Converters\TimeHoursConverter.cs" />
+    <Compile Include="Converters\TimeMinutesConverter.cs" />
     <Compile Include="ViewModels\Point.cs" />
     <Compile Include="ViewModels\Vector.cs" />
   </ItemGroup>

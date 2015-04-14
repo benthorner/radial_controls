@@ -56,88 +56,66 @@
         <Setter Property="Background" Value="CornflowerBlue"/>
         <Setter Property="Foreground" Value="AliceBlue"/>
         
-        <Setter Property="Size" Value="40"/>
+        <Setter Property="Size" Value="80"/>
     </Style>
     
-    <Style TargetType="local:TimePicker">
+    <Style TargetType="local:Clock">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:TimePicker">
+                <ControlTemplate TargetType="local:Clock">
                     <Grid x:Name="PART_Picker">
                         <local:Pyramid>
-                            <local:Circle local:Pyramid.Step="40"
+                            <local:Disc local:Pyramid.Step="80"
                                           Background="{TemplateBinding Background}">
                                 <local:Slider x:Name="PART_MinutesSlider"/>
-                            </local:Circle>
+                            </local:Disc>
                             
-                            <local:Circle local:Pyramid.Step="40"
-                                          Background="{TemplateBinding Background}">
+                            <local:Disc local:Pyramid.Step="80"
+                                          Background="{TemplateBinding Foreground}">
                                 <local:Slider x:Name="PART_HoursSlider"/>
-                            </local:Circle>
+                            </local:Disc>
                             
-                            <local:Circle Background="{TemplateBinding Background}">
-                                <TextBlock x:Name="PART_TimeReadout" 
-                                           HorizontalAlignment="Center" 
-                                           VerticalAlignment="Center"/>
-                            </local:Circle>
+                            <local:Disc Background="DarkBlue">
+                                <local:ClockPresenter HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Foreground="White"
+                                                       FontSize="30"
+                                                       FontWeight="SemiBold"/>
+                            </local:Disc>
                         </local:Pyramid>
-                        
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="EditingStates">
-                                <VisualState x:Name="Looking">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursSlider" 
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesSlider" 
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Editing">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursSlider" 
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                                        </ObjectAnimationUsingKeyFrames>
-
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesSlider" 
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            
-                        </VisualStateManager.VisualStateGroups>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         
-        <Setter Property="Background" Value="DarkBlue"/>
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Background" Value="DeepSkyBlue"/>
+        <Setter Property="Foreground" Value="RoyalBlue"/>
     </Style>
     
-    <Style TargetType="local:Circle">
+    <Style TargetType="local:Disc">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:Circle">
+                <ControlTemplate TargetType="local:Disc">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Viewbox>
                                 <Ellipse Width="1" Height="1" Fill="{TemplateBinding Background}"/>
                             </Viewbox>
 
-                            <ContentPresenter/>
+                            <ContentPresenter />
                         </Grid>
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="local:ClockPresenter">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ClockPresenter">
+                    <TextBlock Text="00:00"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

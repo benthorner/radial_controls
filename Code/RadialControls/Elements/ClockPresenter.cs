@@ -5,24 +5,31 @@ using Windows.UI.Xaml.Media;
 
 namespace RadialControls.Elements
 {
-    public class TimePickerClock : Control
+    public class ClockPresenter : ContentControl
     {
-        private TimePicker _picker;
+        private Clock _picker;
 
-        public TimePickerClock()
+        public ClockPresenter()
         {
+            DefaultStyleKey = typeof (ClockPresenter);
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
             DependencyObject current = this;
 
-            while (!(current is TimePicker))
+            while (!(current is Clock))
             {
                 current = VisualTreeHelper.GetParent(current);
             }
 
-            _picker = current as TimePicker;
+            _picker = current as Clock;
 
             if (_picker != null)
             {
-                throw new Exception();
+                
             }
         }
     }
