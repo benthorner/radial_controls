@@ -13,7 +13,7 @@ namespace RadialControls.Elements
         #region Dependency Properties
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(new TimeSpan(3,20,3), NotifyChanged));
+            "Value", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(default(TimeSpan)));
 
         #endregion
 
@@ -46,11 +46,6 @@ namespace RadialControls.Elements
 
         #region Private Members
 
-        private static void NotifyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var foo = e;
-        }
-
         private void BindControlParts()
         {
             BindingOperations.SetBinding(GetTemplateChild("PART_HoursSlider"), Slider.ValueProperty,
@@ -70,30 +65,6 @@ namespace RadialControls.Elements
                     Converter = new TimeMinutesConverter(this),
                     Mode = BindingMode.TwoWay
                 });
-        }
-
-        private void UpdatePeriod(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var oldValue = (int)e.OldValue;
-            var newValue = (int)e.NewValue;
-
-            if ((oldValue > 9) ^ (newValue > 9))
-            {
-                if ((oldValue < 3) ^ (newValue < 3))
-                {
-                    var period = o.GetValue(null);
-
-                    switch ((string)period)
-                    {
-                        case "AM":
-                            period = "PM"; break;
-                        default:
-                            period = "AM"; break;
-                    }
-
-                    //o.SetValue(PeriodProperty, period);
-                }
-            }
         }
 
         #endregion
