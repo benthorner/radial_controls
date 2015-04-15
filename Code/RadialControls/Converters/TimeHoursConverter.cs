@@ -27,7 +27,7 @@ namespace RadialControls.Converters
             var oldHours = span.Hours % 12;
             var newHours = (((double) value)/360)*12;
 
-            var offset = (oldHours / 12) * 12;
+            var offset = (span.Hours / 12) * 12;
 
             if ((oldHours > 9) ^ (newHours > 9))
             {

@@ -49,6 +49,7 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\TimeDisplayConverter.cs" />
     <Compile Include="Elements\Disc.cs" />
     <Compile Include="Elements\Slider.cs" />
     <Compile Include="Elements\Clock.cs" />
