@@ -1,11 +1,11 @@
-﻿using RadialControls.Converters;
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Thorner.RadialControls.Converters;
 
-namespace RadialControls.Elements
+namespace Thorner.RadialControls.TemplatedControls
 {
     [TemplatePart(Name = "PART_Display", Type = typeof(TextBlock))]
     public class ClockPresenter : ContentControl

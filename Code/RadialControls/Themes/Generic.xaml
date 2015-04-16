@@ -1,9 +1,12 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RadialControls.Elements"
+    xmlns:local="using:Thorner.RadialControls.TemplatedControls"
+    xmlns:converters="using:Thorner.RadialControls.Converters"
     xmlns:controls="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:controls1="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    
+    <converters:DoubleThicknessConverter x:Key="ThicknessConverter"/>
 
     <Style TargetType="local:Slider">       
         <Setter Property="Template">
@@ -65,23 +68,21 @@
                 <ControlTemplate TargetType="local:Clock">
                     <Grid x:Name="PART_Picker">
                         <local:Pyramid>
-                            <local:Disc local:Pyramid.Step="80"
-                                          Background="{TemplateBinding Background}">
-                                <local:Slider x:Name="PART_MinutesSlider"/>
+                            <local:Disc Background="{TemplateBinding Background}" local:Pyramid.Step="{
+                                        Binding HandSize, Converter={StaticResource ThicknessConverter},
+                                        RelativeSource={RelativeSource TemplatedParent}
+                            }">
+                                <local:Slider x:Name="PART_MinutesSlider" Size="{TemplateBinding HandSize}"/>
+                            </local:Disc>
+
+                            <local:Disc Background="{TemplateBinding Foreground}" local:Pyramid.Step="{
+                                        Binding HandSize, Converter={StaticResource ThicknessConverter},
+                                        RelativeSource={RelativeSource TemplatedParent}
+                            }">
+                                <local:Slider x:Name="PART_HoursSlider" Size="{TemplateBinding HandSize}"/>
                             </local:Disc>
                             
-                            <local:Disc local:Pyramid.Step="80"
-                                          Background="{TemplateBinding Foreground}">
-                                <local:Slider x:Name="PART_HoursSlider"/>
-                            </local:Disc>
-                            
-                            <local:Disc Background="DarkBlue">
-                                <local:ClockPresenter HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Foreground="White"
-                                                       FontSize="30"
-                                                       FontWeight="SemiBold"/>
-                            </local:Disc>
+                            <ContentPresenter/>
                         </local:Pyramid>
                     </Grid>
                 </ControlTemplate>
@@ -122,5 +123,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 </ResourceDictionary>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 
-namespace RadialControls.Converters
+namespace Thorner.RadialControls.Converters
 {
     class TimeDisplayConverter : IValueConverter
     {

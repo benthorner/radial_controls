@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace RadialControls.Elements
+namespace Thorner.RadialControls.TemplatedControls
 {
     public class Disc : ContentControl
     {

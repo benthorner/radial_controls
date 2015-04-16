@@ -2,9 +2,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using RadialControls.Converters;
+using Thorner.RadialControls.Converters;
 
-namespace RadialControls.Elements
+namespace Thorner.RadialControls.TemplatedControls
 {
     [TemplatePart(Name = "PART_HoursSlider", Type = typeof(Slider))]
     [TemplatePart(Name = "PART_MinutesSlider", Type = typeof(Slider))]
@@ -15,12 +15,31 @@ namespace RadialControls.Elements
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             "Value", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(default(TimeSpan)));
 
+        public static readonly DependencyProperty HandSizeProperty = DependencyProperty.Register(
+            "HandSize", typeof(double), typeof(Clock), new PropertyMetadata(50));
+
         #endregion
 
         public Clock()
         {
             DefaultStyleKey = typeof(Clock);
         }
+
+        #region Properties
+
+        public TimeSpan Value
+        {
+            get { return (TimeSpan)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        public double HandSize
+        {
+            get { return (double)GetValue(HandSizeProperty); }
+            set { SetValue(HandSizeProperty, value); }
+        }
+
+        #endregion
 
         #region UIElement Overrides
         
@@ -30,16 +49,6 @@ namespace RadialControls.Elements
             BindControlParts();
 
             VisualStateManager.GoToState(this, "Editing", false);
-        }
-
-        #endregion
-
-        #region Properties
-
-        public TimeSpan Value
-        {
-            get { return (TimeSpan)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
         }
 
         #endregion

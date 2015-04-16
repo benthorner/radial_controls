@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RadialControls.ViewModels
+namespace Thorner.RadialControls.ViewModels
 {
     public class Vector
     {

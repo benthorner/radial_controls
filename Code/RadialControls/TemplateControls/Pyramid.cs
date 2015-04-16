@@ -3,7 +3,7 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace RadialControls.Elements
+namespace Thorner.RadialControls.TemplatedControls
 {
     public class Pyramid : Panel
     {

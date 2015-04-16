@@ -5,9 +5,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using RadialControls.ViewModels;
+using Thorner.RadialControls.ViewModels;
 
-namespace RadialControls.Elements
+namespace Thorner.RadialControls.TemplatedControls
 {
     [TemplatePart(Name="PART_Slider", Type = typeof(FrameworkElement))]
     public sealed class Slider : Control
