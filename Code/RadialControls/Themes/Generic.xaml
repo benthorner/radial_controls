@@ -72,25 +72,58 @@
                                         Binding HandSize, Converter={StaticResource ThicknessConverter},
                                         RelativeSource={RelativeSource TemplatedParent}
                             }">
-                                <local:Slider x:Name="PART_MinutesSlider" Size="{TemplateBinding HandSize}"/>
+                                <local:Slider x:Name="PART_MinutesSlider" Size="{TemplateBinding HandSize}"
+                                              Background="{TemplateBinding HandStroke}" Foreground="{TemplateBinding HandFill}"/>
                             </local:Disc>
 
                             <local:Disc Background="{TemplateBinding Foreground}" local:Pyramid.Step="{
                                         Binding HandSize, Converter={StaticResource ThicknessConverter},
                                         RelativeSource={RelativeSource TemplatedParent}
                             }">
-                                <local:Slider x:Name="PART_HoursSlider" Size="{TemplateBinding HandSize}"/>
+                                <local:Slider x:Name="PART_HoursSlider" Size="{TemplateBinding HandSize}"
+                                              Background="{TemplateBinding HandStroke}" Foreground="{TemplateBinding HandFill}"/>
                             </local:Disc>
                             
                             <ContentPresenter/>
                         </local:Pyramid>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="HandsStates">
+                                <VisualState x:Name="HandsFree">
+                                    <Storyboard TargetProperty="Visibility">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesSlider">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursSlider">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <VisualState x:Name="WithHands">
+                                    <Storyboard TargetProperty="Visibility">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_MinutesSlider">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_HoursSlider">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         
-        <Setter Property="Background" Value="DeepSkyBlue"/>
+        <Setter Property="Background" Value="LightSkyBlue"/>
         <Setter Property="Foreground" Value="RoyalBlue"/>
+        
+        <Setter Property="HandStroke" Value="CornflowerBlue"/>
+        <Setter Property="HandFill" Value="AliceBlue"/>
     </Style>
     
     <Style TargetType="local:Disc">

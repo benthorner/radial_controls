@@ -11,10 +11,70 @@
     d:DesignWidth="400">
     
     <Grid>
-        <templated:Clock>
-            <templated:Disc Background="DarkBlue">
+        <templated:Clock x:Name="Clock">
+            <templated:Disc x:Name="Time">
                 <templated:ClockPresenter/>
             </templated:Disc>
         </templated:Clock>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OnOffStates">
+                <VisualState x:Name="Off">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
+                                                       Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="LightGray"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
+                                                       Storyboard.TargetProperty="Foreground">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Gray"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Time" 
+                                                       Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="DimGray"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="On">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
+                                                       Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="LightSkyBlue"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
+                                                       Storyboard.TargetProperty="Foreground">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="RoyalBlue"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Time" 
+                                                       Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="DarkBlue"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            
+            <VisualStateGroup x:Name="ModeStates">
+                <VisualState x:Name="HandsFree">
+                    <Storyboard TargetName="Clock" TargetProperty="Mode">
+                        <ObjectAnimationUsingKeyFrames>
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="HandsFree"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="WithHands">
+                    <Storyboard TargetName="Clock" TargetProperty="Mode">
+                        <ObjectAnimationUsingKeyFrames>
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="WithHands"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>
