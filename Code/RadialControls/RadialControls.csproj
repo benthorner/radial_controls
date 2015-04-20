@@ -56,11 +56,11 @@
     <Compile Include="Converters\DoubleThicknessConverter.cs" />
     <Compile Include="Converters\TimeDisplayConverter.cs" />
     <Compile Include="TemplateControls\Disc.cs" />
+    <Compile Include="TemplateControls\RoundTextBlock.cs" />
     <Compile Include="TemplateControls\Slider.cs" />
     <Compile Include="TemplateControls\Clock.cs" />
     <Compile Include="TemplateControls\ClockPresenter.cs" />
     <Compile Include="TemplateControls\Pyramid.cs" />
-    <Compile Include="MultiBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
     <Compile Include="Converters\TimeMinutesConverter.cs" />

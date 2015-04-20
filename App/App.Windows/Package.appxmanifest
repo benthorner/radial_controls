@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
 
-  <Identity Name="dae23b73-fb7a-4622-851e-c07e3e739df6"
-            Publisher="CN=Ben"
+  <Identity Name="e512cc97-0f8d-41e3-9992-8ed0d6ac8feb"
+            Publisher="CN=benth"
             Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>App.Windows</DisplayName>
-    <PublisherDisplayName>Ben</PublisherDisplayName>
+    <PublisherDisplayName>benth</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

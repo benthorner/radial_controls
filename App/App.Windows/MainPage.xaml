@@ -2,13 +2,13 @@
     x:Class="App.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:App"
-    xmlns:radial="using:Thorner.RadialControls.UserControls"
+    xmlns:local="using:Thorner.RadialControls.TemplateControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <radial:TimePicker Status="Off"/>
+        <Ellipse Width="50" Height="50" Fill="Red" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <local:RoundTextBlock Radius="100" Text="MANCHESTER" FontSize="30"/>
     </Grid>
 </Page>

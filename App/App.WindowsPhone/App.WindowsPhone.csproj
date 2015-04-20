@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2F376FA6-69F9-416E-866E-92CCA45EB892}</ProjectGuid>
+    <ProjectGuid>{DCE8FAE7-189F-44E1-B794-EDA368C7237B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>App</RootNamespace>
@@ -81,10 +81,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\Code\RadialControls\RadialControls.csproj">
-      <Project>{f5aacae4-17d3-4b08-b5a7-5aaca65b3b3a}</Project>
-      <Name>RadialControls</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainPage.xaml.cs">

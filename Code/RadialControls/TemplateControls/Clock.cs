@@ -6,7 +6,7 @@ using Thorner.RadialControls.Converters;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 
-namespace Thorner.RadialControls.TemplatedControls
+namespace Thorner.RadialControls.TemplateControls
 {
     [TemplatePart(Name = "PART_HoursSlider", Type = typeof(Slider))]
     [TemplatePart(Name = "PART_MinutesSlider", Type = typeof(Slider))]
