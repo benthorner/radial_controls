@@ -8,7 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Ellipse Width="50" Height="50" Fill="Red" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <local:RoundTextBlock Radius="100" Text="MANCHESTER" FontSize="30"/>
     </Grid>
 </Page>

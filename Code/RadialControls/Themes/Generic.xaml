@@ -158,10 +158,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:RoundTextBlock">
-
-                        <Border BorderBrush="Red" BorderThickness="5">
-                        <Grid x:Name="PART_Grid"/>
-                    </Border>
+                    <Grid x:Name="PART_Grid"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

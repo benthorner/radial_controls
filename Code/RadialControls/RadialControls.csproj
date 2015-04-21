@@ -68,6 +68,7 @@
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Point.cs" />
+    <Compile Include="ViewModels\TextBlock.cs" />
     <Compile Include="ViewModels\Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

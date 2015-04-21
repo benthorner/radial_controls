@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Thorner.RadialControls.ViewModels;
 using Windows.Foundation;
-using Windows.UI;
-using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Shapes;
 
 namespace Thorner.RadialControls.TemplateControls
 {
@@ -88,7 +85,7 @@ namespace Thorner.RadialControls.TemplateControls
                 );
             });
 
-            FanOut(_grid.Children);
+            FanOut(_grid.Children.OfType<TextBlock>());
 
             return base.ArrangeOverride(
                 new Size(2 * Radius + offset, 2 * Radius + offset)
@@ -111,49 +108,22 @@ namespace Thorner.RadialControls.TemplateControls
                 { 
                     Text = character.ToString(),
 
-                    RenderTransform = new TransformGroup
-                    {
-                        Children = new TransformCollection 
-                        {
-                            new TranslateTransform { Y = -Radius },
-                            new RotateTransform()
-                        }
-                    },
-
-                    RenderTransformOrigin = new Point { X = 0.5, Y = 0.5 },
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
                 });
             }
         }
 
-        private void FanOut(IEnumerable<UIElement> children)
+        private void FanOut(IEnumerable<TextBlock> children)
         {
-            var index = 0;
             var angle = 0.0;
 
-            foreach (var child in children)
+            for (var i = 0; i < children.Count(); i++)
             {
-                var block = child as TextBlock;
-                if (block == null) continue;
-                //block.FanOut(previous, offset);
+                var block = children.ElementAt(i);
+                angle = block.FanOut(Radius, angle);
 
-                var group = block.RenderTransform as TransformGroup;
-                if (group == null) continue;
-                var arc = Math.Atan2(block.ActualWidth / 2, Radius);
-
-                if (index++ > 0)
+                if (i > 0)
                 {
-                    angle += arc * 180 / Math.PI;
-                }
-
-                group.Children
-                    .OfType<RotateTransform>()
-                    .Single().Angle = angle;
-
-                if (index < _grid.Children.Count)
-                {
-                    angle += arc * 180 / Math.PI;
+                    angle = block.FanOut(Radius, angle);
                 }
             }
         }
