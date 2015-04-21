@@ -8,28 +8,27 @@ namespace Thorner.RadialControls.ViewModels
 {
     public static class TextBlockExtensions
     {
-        public static double FanOut(this TextBlock block, double radius, double offset)
+        public static void FanOut(this TextBlock block, double radius, double angle)
         {
-            block.HorizontalAlignment = HorizontalAlignment.Center;
-            block.VerticalAlignment = VerticalAlignment.Center;
-
             var origin = new Point { X = 0.5, Y = 0.5 };
             block.RenderTransformOrigin = origin;
-
-            var angle = (
-                Math.Atan2(block.ActualWidth / 2, radius)
-            ) * 180 / Math.PI;
 
             block.RenderTransform = new TransformGroup
             {
                 Children = new TransformCollection
                     {
                         new TranslateTransform { Y = - radius },
-                        new RotateTransform { Angle = offset }
+                        new RotateTransform { Angle = angle }
                     }
             };
 
-            return offset + angle;
+            block.VerticalAlignment = VerticalAlignment.Center;
+            block.HorizontalAlignment = HorizontalAlignment.Center;
+        }
+
+        public static double ArcAngle(this TextBlock block, double radius)
+        {
+            return Math.Atan2(block.ActualWidth / 2, radius) * 360 / Math.PI;
         }
     }
 }

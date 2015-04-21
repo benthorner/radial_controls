@@ -8,6 +8,8 @@ using Windows.UI.Xaml.Controls;
 
 namespace Thorner.RadialControls.TemplateControls
 {
+    public enum RadialAlignment { Middle, Start, End };
+
     public class RoundTextBlock : Control
     {
         private Grid _grid;
@@ -19,6 +21,9 @@ namespace Thorner.RadialControls.TemplateControls
 
         public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
             "Radius", typeof(double), typeof(RoundTextBlock), new PropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty AlignmentProperty = DependencyProperty.Register(
+            "Alignment", typeof(RadialAlignment), typeof(RoundTextBlock), new PropertyMetadata(default(RadialAlignment)));
 
         #endregion
 
@@ -39,7 +44,13 @@ namespace Thorner.RadialControls.TemplateControls
         {
             get { return (double)GetValue(RadiusProperty); }
             set { SetValue(RadiusProperty, value); }
-        }           
+        }
+        
+        public RadialAlignment Alignment
+        {
+            get { return (RadialAlignment)GetValue(AlignmentProperty); }
+            set { SetValue(AlignmentProperty, value); }
+        }
 
         #endregion
 
@@ -85,7 +96,8 @@ namespace Thorner.RadialControls.TemplateControls
                 );
             });
 
-            FanOut(_grid.Children.OfType<TextBlock>());
+            var blocks = _grid.Children.OfType<TextBlock>();
+            FanOut(blocks, AlignRotate(blocks));
 
             return base.ArrangeOverride(
                 new Size(2 * Radius + offset, 2 * Radius + offset)
@@ -112,19 +124,48 @@ namespace Thorner.RadialControls.TemplateControls
             }
         }
 
-        private void FanOut(IEnumerable<TextBlock> children)
+        private double AlignRotate(IEnumerable<TextBlock> blocks)
         {
-            var angle = 0.0;
+            double offset = 0.0;
 
-            for (var i = 0; i < children.Count(); i++)
+            for (var i = 0; i < blocks.Count(); i++)
             {
-                var block = children.ElementAt(i);
-                angle = block.FanOut(Radius, angle);
+                var child = blocks.ElementAt(i);
+                var arc = child.ArcAngle(Radius);
+
+                offset += arc / 2;
+
+                if ((i > 0) && (i < blocks.Count() - 1))
+                {
+                    offset += arc / 2;
+                }
+            }
+
+            switch (Alignment)
+            {
+                case RadialAlignment.Middle:
+                    return -offset / 2;
+                case RadialAlignment.End:
+                    return -offset;
+                default:
+                    return 0.0;
+            }
+        }
+
+        private void FanOut(IEnumerable<TextBlock> blocks, double offset)
+        {
+            for (var i = 0; i < blocks.Count(); i++)
+            {
+                var block = blocks.ElementAt(i);
+                var arc = block.ArcAngle(Radius);
 
                 if (i > 0)
                 {
-                    angle = block.FanOut(Radius, angle);
+                    offset += arc / 2;
                 }
+
+                block.FanOut(Radius, offset);
+                offset += arc / 2;
             }
         }
 
