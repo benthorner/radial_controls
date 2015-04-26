@@ -24,6 +24,12 @@ namespace Thorner.RadialControls.TemplateControls
         public static readonly DependencyProperty AlignmentProperty = DependencyProperty.Register(
             "Alignment", typeof(Fan.Position), typeof(FanTextBlock), new PropertyMetadata(default(Fan.Position), UpdateFan));
 
+        public static readonly DependencyProperty FrillProperty = DependencyProperty.Register(
+            "Frill", typeof(Fan.Extent), typeof(FanTextBlock), new PropertyMetadata(default(Fan.Extent), UpdateFan));
+
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
+            "Offset", typeof(double), typeof(FanTextBlock), new PropertyMetadata(default(double), UpdateFan));
+
         #endregion
 
         public FanTextBlock()
@@ -51,6 +57,18 @@ namespace Thorner.RadialControls.TemplateControls
             set { SetValue(AlignmentProperty, value); }
         }
 
+        public Fan.Extent Frill
+        {
+            get { return (Fan.Extent)GetValue(FrillProperty); }
+            set { SetValue(FrillProperty, value); }
+        }
+
+        public double Offset
+        {
+            get { return (double)GetValue(OffsetProperty); }
+            set { SetValue(OffsetProperty, value); }
+        }
+
         #endregion
 
         #region UIElement Overrides
@@ -69,7 +87,7 @@ namespace Thorner.RadialControls.TemplateControls
             if (_grid == null) return new Size(0, 0);
             var blocks = _grid.Children.OfType<TextBlock>();
 
-            var offset = blocks.Any() ? blocks.Max((block) =>
+            var excess = blocks.Any() ? blocks.Max((block) =>
             {
                 block.Measure(availableSize);
 
@@ -80,7 +98,7 @@ namespace Thorner.RadialControls.TemplateControls
             }) : 0;
 
             return new Size(
-                2 * Radius + offset, 2 * Radius + offset
+                2 * Radius + excess, 2 * Radius + excess
             );
         }
 
@@ -89,7 +107,7 @@ namespace Thorner.RadialControls.TemplateControls
             if (_grid == null) return new Size(0, 0);
             var blocks = _grid.Children.OfType<TextBlock>();
 
-            var offset = blocks.Any() ? blocks.Max((block) =>
+            var excess = blocks.Any() ? blocks.Max((block) =>
             {
                 return Math.Max(
                     block.ActualWidth, block.ActualHeight
@@ -99,7 +117,7 @@ namespace Thorner.RadialControls.TemplateControls
             if (_fan != null) _fan.Flourish();
 
             return base.ArrangeOverride(
-                new Size(2 * Radius + offset, 2 * Radius + offset)
+                new Size(2 * Radius + excess, 2 * Radius + excess)
             );
         }
 
@@ -114,11 +132,13 @@ namespace Thorner.RadialControls.TemplateControls
 
         private static void UpdateFan(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var fan = sender as FanTextBlock;
-            if (fan._fan == null) return;
+            var block = sender as FanTextBlock;
+            if (block._fan == null) return;
 
-            fan._fan.Radius = fan.Radius;
-            fan._fan.Alignment = fan.Alignment;
+            block._fan.Radius = block.Radius;
+            block._fan.Alignment = block.Alignment;
+            block._fan.Frill = block.Frill;
+            block._fan.Offset = block.Offset;
         }
 
         #endregion
@@ -140,7 +160,8 @@ namespace Thorner.RadialControls.TemplateControls
 
             _fan = new Fan(_grid.Children.OfType<TextBlock>())
             {
-                Radius = Radius, Alignment = Alignment
+                Radius = Radius, Alignment = Alignment, 
+                Frill = Frill, Offset = Offset
             };
         }
 

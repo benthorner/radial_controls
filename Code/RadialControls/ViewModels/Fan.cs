@@ -9,7 +9,9 @@ namespace Thorner.RadialControls.ViewModels
 {
     public class Fan
     {
-        public enum Position { Middle, Start, End };
+        public enum Extent { Half, All, None };
+
+        public enum Position { Centre, Left, Right };
 
         private IEnumerable<FrameworkElement> _slats;
 
@@ -19,6 +21,8 @@ namespace Thorner.RadialControls.ViewModels
         }
 
         #region Properties
+
+        public Extent Frill { get; set; }
 
         public Position Alignment { get; set; }
 
@@ -30,40 +34,58 @@ namespace Thorner.RadialControls.ViewModels
 
         public void Flourish()
         {
-            var offset = Offset + AlignmentFactor();
+            var radius = Radius + RadiusFactor();
+            var offset = Offset + AlignmentFactor(radius);
 
             for (var i = 0; i < _slats.Count(); i++)
             {
                 var element = _slats.ElementAt(i);
-                var arc = ArcAngle(element, Radius);
+                var arc = ArcAngle(element, radius);
 
                 if (i > 0)
                 {
                     offset += arc / 2;
                 }
 
-                FanOut(element, Radius, offset);
+                FanOut(element, radius, offset);
                 offset += arc / 2;
             }
         }
 
         #region Private Members
 
-        private double AlignmentFactor()
+        private double RadiusFactor()
+        {
+            if (_slats.Count() == 0) return 0.0;
+
+            var frill = _slats.Max(
+                (slat) => slat.ActualHeight / 2
+            );
+
+            switch (Frill)
+            {
+                case Fan.Extent.None: return -frill / 2;
+                case Fan.Extent.All: return frill / 2;
+            }
+
+            return 0.0;
+        }
+
+        private double AlignmentFactor(double radius)
         {
             if (_slats.Count() == 0) return 0.0;
 
             double offset = _slats.Sum(
-                (slat) => ArcAngle(slat, Radius)
+                (slat) => ArcAngle(slat, radius)
             );
 
-            offset -= ArcAngle(_slats.First(), Radius) / 2;
-            offset -= ArcAngle(_slats.Last(), Radius) / 2;
+            offset -= ArcAngle(_slats.First(), radius) / 2;
+            offset -= ArcAngle(_slats.Last(), radius) / 2;
 
             switch (Alignment)
             {
-                case Fan.Position.Middle: return -offset / 2;
-                case Fan.Position.End: return -offset;
+                case Fan.Position.Centre: return -offset / 2;
+                case Fan.Position.Right: return -offset;
             }
 
             return 0.0;
