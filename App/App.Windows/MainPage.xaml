@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <local:RoundTextBlock Radius="100" Text="MANCHESTER" FontSize="30"/>
+        <local:FanTextBlock Radius="100" Text="MANCHESTER" FontSize="30"/>
     </Grid>
 </Page>

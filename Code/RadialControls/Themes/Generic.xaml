@@ -154,10 +154,10 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
     
-    <Style TargetType="local:RoundTextBlock">
+    <Style TargetType="local:FanTextBlock">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:RoundTextBlock">
+                <ControlTemplate TargetType="local:FanTextBlock">
                     <Grid x:Name="PART_Grid"/>
                 </ControlTemplate>
             </Setter.Value>
