@@ -19,7 +19,7 @@ namespace Thorner.RadialControls.TemplateControls
             "Text", typeof(string), typeof(FanTextBlock), new PropertyMetadata(default(string), ResetFan));
 
         public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
-            "Radius", typeof(double), typeof(FanTextBlock), new PropertyMetadata(default(double), UpdateFan));
+            "Radius", typeof(double), typeof(FanTextBlock), new PropertyMetadata(default(double), ResetFan));
 
         public static readonly DependencyProperty AlignmentProperty = DependencyProperty.Register(
             "Alignment", typeof(Fan.Position), typeof(FanTextBlock), new PropertyMetadata(default(Fan.Position), UpdateFan));
@@ -98,7 +98,8 @@ namespace Thorner.RadialControls.TemplateControls
             }) : 0;
 
             return new Size(
-                2 * Radius + excess, 2 * Radius + excess
+                2 * Math.Abs(Radius) + excess, 
+                2 * Math.Abs(Radius) + excess
             );
         }
 
@@ -116,9 +117,10 @@ namespace Thorner.RadialControls.TemplateControls
 
             if (_fan != null) _fan.Flourish();
 
-            return base.ArrangeOverride(
-                new Size(2 * Radius + excess, 2 * Radius + excess)
-            );
+            return base.ArrangeOverride(new Size(
+                2 * Math.Abs(Radius) + excess, 
+                2 * Math.Abs(Radius) + excess
+            ));
         }
 
         #endregion
@@ -135,10 +137,9 @@ namespace Thorner.RadialControls.TemplateControls
             var block = sender as FanTextBlock;
             if (block._fan == null) return;
 
-            block._fan.Radius = block.Radius;
-            block._fan.Alignment = block.Alignment;
             block._fan.Frill = block.Frill;
             block._fan.Offset = block.Offset;
+            block._fan.Alignment = block.Alignment;
         }
 
         #endregion
@@ -147,21 +148,18 @@ namespace Thorner.RadialControls.TemplateControls
 
         private void FanOut()
         {
-            if (_grid == null || Text == null) return;
-            
-            _grid.Children.Clear();
+            if (Text == null || _grid == null) return;
 
-            foreach(var letter in Text) 
+            var letters = Radius > 0 ? Text : Text.Reverse();
+
+            _grid.Children.Clear(); foreach (var letter in letters)
             {
-                _grid.Children.Add(
-                    new TextBlock { Text = letter.ToString() }
-                );
+                _grid.Children.Add(new TextBlock { Text = letter.ToString() });
             }
 
             _fan = new Fan(_grid.Children.OfType<TextBlock>())
             {
-                Radius = Radius, Alignment = Alignment, 
-                Frill = Frill, Offset = Offset
+                Radius = Radius, Alignment = Alignment, Frill = Frill, Offset = Offset
             };
         }
 

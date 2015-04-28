@@ -60,7 +60,7 @@ namespace Thorner.RadialControls.ViewModels
 
             var frill = _slats.Max(
                 (slat) => slat.ActualHeight / 2
-            );
+            ) * Math.Sign(Radius);
 
             switch (Frill)
             {
@@ -100,7 +100,7 @@ namespace Thorner.RadialControls.ViewModels
             {
                 Children = new TransformCollection
                     {
-                        new TranslateTransform { Y = - radius },
+                        new TranslateTransform { Y = -radius },
                         new RotateTransform { Angle = angle }
                     }
             };
@@ -111,7 +111,9 @@ namespace Thorner.RadialControls.ViewModels
 
         private double ArcAngle(FrameworkElement element, double radius)
         {
-            return Math.Atan2(element.ActualWidth / 2, radius) * 360 / Math.PI;
+            return Math.Atan2(
+                element.ActualWidth / 2, Math.Abs(radius)
+            ) * 360 / Math.PI;
         }
 
         #endregion
