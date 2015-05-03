@@ -8,14 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <local:Ring>
-            <local:Ring.Insets>
-                <Rectangle Width="100" Height="100" Fill="Red" local:Ring.Origin="90" local:Ring.Angle="90"/>
-            </local:Ring.Insets>
-            
-            <local:Ring.Content>
-                <Ellipse Width="100" Height="100" Fill="Blue"/>
-            </local:Ring.Content>
-        </local:Ring>
+        <local:HaloRing>
+            <local:HaloRingSlider Width="100" local:HaloRing.Origin="180" local:HaloRing.Angle="90"/>
+        </local:HaloRing>
     </Grid>
 </Page>

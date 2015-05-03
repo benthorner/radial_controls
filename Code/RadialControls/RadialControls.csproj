@@ -56,7 +56,9 @@
     <Compile Include="Converters\DoubleThicknessConverter.cs" />
     <Compile Include="Converters\TimeDisplayConverter.cs" />
     <Compile Include="TemplateControls\Disc.cs" />
-    <Compile Include="TemplateControls\FanTextBlock.cs" />
+    <Compile Include="TemplateControls\Halo.cs" />
+    <Compile Include="TemplateControls\HaloRing.cs" />
+    <Compile Include="TemplateControls\HaloRingSlider.cs" />
     <Compile Include="TemplateControls\Slider.cs" />
     <Compile Include="TemplateControls\Clock.cs" />
     <Compile Include="TemplateControls\ClockPresenter.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="UserControls\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Double.cs" />
     <Compile Include="ViewModels\Fan.cs" />
     <Compile Include="ViewModels\Point.cs" />
     <Compile Include="ViewModels\Vector.cs" />

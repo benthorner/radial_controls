@@ -153,14 +153,21 @@
         <Setter Property="FontSize" Value="30"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
-    
-    <Style TargetType="local:Ring">
+
+    <Style TargetType="local:HaloRingSlider">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:Ring">
-                    <Grid x:Name="PART_Grid"/>
+                <ControlTemplate TargetType="local:HaloRingSlider">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Viewbox>
+                            <Ellipse Width="1" Height="1" Fill="{TemplateBinding Background}"/>
+                        </Viewbox>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        
+        <Setter Property="Background" Value="AliceBlue"/>
     </Style>
 </ResourceDictionary>
