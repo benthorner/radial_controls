@@ -15,33 +15,40 @@ namespace Thorner.RadialControls.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var span = (TimeSpan) value;
-            return (((double) span.TotalMinutes) / 60) * 360;
+            var minutes = _picker.Value.TotalMinutes;
+            return (minutes / 60) * 360;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            var span = _picker.Value;
-
-            var oldMinutes = span.Minutes;
-            var newMinutes = (((double) value)/360)*60;
-
-            var hours = span.Hours;
+            var newMinutes = (((double) value % 360) / 360) * 60;
             var seconds = (newMinutes * 60) % 60;
-
-            if ((oldMinutes > 45) && (newMinutes < 15))
-            {
-                hours = (hours + 1) % 24;
-            }
-
-            if ((oldMinutes < 15) && (newMinutes > 45))
-            {
-                hours = (24 + hours - 1) % 24;
-            }
+            var hours = WrapHours(_picker.Value, newMinutes);
 
             return new TimeSpan(
                 hours, (int) newMinutes, (int) seconds
             );
         }
+
+        #region Private Members
+
+        private int WrapHours(TimeSpan span, double newMinutes)
+        {
+            var oldMinutes = span.Minutes;
+
+            if ((oldMinutes > 45) && (newMinutes < 15))
+            {
+                return (span.Hours + 1) % 24;
+            }
+
+            if ((oldMinutes < 15) && (newMinutes > 45))
+            {
+                return (24 + span.Hours - 1) % 24;
+            }
+
+            return span.Hours;
+        }
+
+        #endregion
     }
 }

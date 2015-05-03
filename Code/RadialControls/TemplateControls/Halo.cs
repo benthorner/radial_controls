@@ -25,7 +25,9 @@ namespace Thorner.RadialControls.TemplateControls
 
                 var ring = child as HaloRing;
                 if (ring == null) continue;
+
                 length -= ring.Thickness * 2;
+                length = length < 0 ? 0 : length;
             }
 
             return size;
@@ -51,7 +53,12 @@ namespace Thorner.RadialControls.TemplateControls
                 if (ring == null) continue;
 
                 length -= ring.Thickness * 2;
-                origin += ring.Thickness;
+                length = length > 0 ? length : 0;
+
+                if (length > 0)
+                {
+                    origin += ring.Thickness;
+                }
             }
 
             return size;

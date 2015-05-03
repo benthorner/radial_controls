@@ -15,8 +15,7 @@ namespace Thorner.RadialControls.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var span = (TimeSpan) value;
-            var hours = (double) span.TotalHours;
+            var hours = _picker.Value.TotalHours;
             return ((hours % 12) / 12) * 360;
         }
 
@@ -24,22 +23,32 @@ namespace Thorner.RadialControls.Converters
         {
             var span = _picker.Value;
 
-            var oldHours = span.Hours % 12;
-            var newHours = (((double) value)/360)*12;
+            var newHours = (((double) value % 360) / 360) * 12;
+            var offset = WrapPeriod(span, newHours);
 
+            return new TimeSpan(
+                (int) newHours + offset, span.Minutes, span.Seconds
+            );
+        }
+
+        #region Private Members
+
+        private int WrapPeriod(TimeSpan span, double newHours)
+        {
+            var oldHours = span.Hours % 12;
             var offset = (span.Hours / 12) * 12;
 
             if ((oldHours > 9) ^ (newHours > 9))
             {
                 if ((oldHours < 3) ^ (newHours < 3))
                 {
-                    offset = (offset + 12) % 24;
+                    return (offset + 12) % 24;
                 }
             }
 
-            return new TimeSpan(
-                (int) newHours + offset, span.Minutes, span.Seconds
-            );
+            return offset;
         }
+
+        #endregion
     }
 }

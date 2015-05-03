@@ -12,9 +12,7 @@
     
     <Grid>
         <templated:Clock x:Name="Clock">
-            <templated:Disc x:Name="Time">
-                <templated:ClockPresenter/>
-            </templated:Disc>
+            <templated:ClockPresenter x:Name="Time"/>
         </templated:Clock>
 
         <VisualStateManager.VisualStateGroups>
@@ -53,24 +51,6 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Time" 
                                                        Storyboard.TargetProperty="Background">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="DarkBlue"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-            
-            <VisualStateGroup x:Name="ModeStates">
-                <VisualState x:Name="HandsFree">
-                    <Storyboard TargetName="Clock" TargetProperty="Mode">
-                        <ObjectAnimationUsingKeyFrames>
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="HandsFree"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-
-                <VisualState x:Name="WithHands">
-                    <Storyboard TargetName="Clock" TargetProperty="Mode">
-                        <ObjectAnimationUsingKeyFrames>
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="WithHands"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

@@ -8,10 +8,35 @@ namespace Thorner.RadialControls.TemplateControls
 {
     public sealed class HaloRingSlider : Button
     {
+        #region Dependency Properties
+
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+            "Value", typeof(double), typeof(HaloRingSlider), new PropertyMetadata(0.0, (o, e) =>
+                {
+                    var parent = ((HaloRingSlider)o).Parent as HaloRing;
+                    if (parent == null) return;
+
+                    o.SetValue(HaloRing.AngleProperty, e.NewValue);
+                    parent.InvalidateMeasure(); parent.UpdateLayout();
+                })
+        );
+
+        #endregion
+
         public HaloRingSlider()
         {
             this.DefaultStyleKey = typeof(HaloRingSlider);
         }
+
+        #region Properties
+
+        public double Value
+        {
+            get { return (double)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        #endregion
 
         #region UIElement Overrides
 
@@ -55,9 +80,8 @@ namespace Thorner.RadialControls.TemplateControls
                 return;
             }
 
-            RefreshParentRing(
-                SliderAngle(e) - (double)GetValue(HaloRing.OriginProperty)
-            );
+            Value = SliderAngle(e) 
+                - (double)GetValue(HaloRing.OriginProperty);
         }
 
         private void ReleasePointer(object sender, PointerRoutedEventArgs e)
@@ -83,17 +107,6 @@ namespace Thorner.RadialControls.TemplateControls
 
             var hand = point.RelativeTo(centre);
             return new Vector(0, -1).AngleTo(hand);
-        }
-
-        private void RefreshParentRing(double angle)
-        {
-            var parent = Parent as HaloRing;
-            if (parent == null) return;
-
-            SetValue(HaloRing.AngleProperty, angle);
-
-            parent.InvalidateMeasure();
-            parent.UpdateLayout();
         }
 
         #endregion

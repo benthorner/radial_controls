@@ -53,16 +53,13 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\DoubleThicknessConverter.cs" />
     <Compile Include="Converters\TimeDisplayConverter.cs" />
     <Compile Include="TemplateControls\Disc.cs" />
     <Compile Include="TemplateControls\Halo.cs" />
     <Compile Include="TemplateControls\HaloRing.cs" />
     <Compile Include="TemplateControls\HaloRingSlider.cs" />
-    <Compile Include="TemplateControls\Slider.cs" />
     <Compile Include="TemplateControls\Clock.cs" />
     <Compile Include="TemplateControls\ClockPresenter.cs" />
-    <Compile Include="TemplateControls\Pyramid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
     <Compile Include="Converters\TimeMinutesConverter.cs" />
