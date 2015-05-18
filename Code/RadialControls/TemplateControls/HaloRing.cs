@@ -20,9 +20,6 @@ namespace Thorner.RadialControls.TemplateControls
         public static readonly DependencyProperty OriginProperty = DependencyProperty.RegisterAttached(
             "Origin", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
 
-        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.Register(
-            "Thickness", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0));
-
         #endregion
 
         #region Properties
@@ -35,12 +32,6 @@ namespace Thorner.RadialControls.TemplateControls
         public static void SetOrigin(DependencyObject o, double value)
         {
             o.SetValue(HaloRing.OriginProperty, value);
-        }
-
-        public double Thickness
-        {
-            get { return (double)GetValue(ThicknessProperty); }
-            set { SetValue(ThicknessProperty, value); }
         }
 
         public static void SetAngle(DependencyObject o, double value)
@@ -70,7 +61,8 @@ namespace Thorner.RadialControls.TemplateControls
                 availableSize.Width, availableSize.Height
             );
 
-            Thickness = CalculateThickness(Children);
+            var thickness = CalculateThickness(Children);
+            SetValue(Halo.ThicknessProperty, new Thickness(thickness));
             return new Size(length, length);
         }
 
@@ -92,8 +84,9 @@ namespace Thorner.RadialControls.TemplateControls
                 );
             }
 
-            Thickness = CalculateThickness(Children);
-            var ringRadius = radius - Thickness / 2;
+            var thickness = CalculateThickness(Children);
+            SetValue(Halo.ThicknessProperty, new Thickness(thickness));
+            var ringRadius = radius - thickness / 2;
 
             foreach (var child in Children)
             {
