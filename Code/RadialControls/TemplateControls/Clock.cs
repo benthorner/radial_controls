@@ -15,13 +15,13 @@ namespace Thorner.RadialControls.TemplateControls
         #region Dependency Properties
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(default(TimeSpan)));
+            "Value", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(new TimeSpan()));
 
         public static readonly DependencyProperty HandSizeProperty = DependencyProperty.Register(
             "HandSize", typeof(double), typeof(Clock), new PropertyMetadata(50));
 
         public static readonly DependencyProperty HandFillProperty = DependencyProperty.Register(
-            "HandFill", typeof(Brush), typeof(Clock), new PropertyMetadata(default(Brush)));
+            "HandFill", typeof(Brush), typeof(Clock), new PropertyMetadata(null));
 
         #endregion
 
@@ -56,7 +56,7 @@ namespace Thorner.RadialControls.TemplateControls
 
         protected override void OnApplyTemplate()
         {
-            BindingOperations.SetBinding(GetTemplateChild("PART_HoursSlider"), HaloRingSlider.ValueProperty,
+            BindingOperations.SetBinding(GetTemplateChild("PART_HoursSlider"), HaloRing.AngleProperty,
                 new Binding
                 {
                     Source = this, Path = new PropertyPath("Value"),
@@ -64,7 +64,7 @@ namespace Thorner.RadialControls.TemplateControls
                     Mode = BindingMode.TwoWay
                 });
 
-            BindingOperations.SetBinding(GetTemplateChild("PART_MinutesSlider"), HaloRingSlider.ValueProperty,
+            BindingOperations.SetBinding(GetTemplateChild("PART_MinutesSlider"), HaloRing.AngleProperty,
                 new Binding
                 {
                     Source = this, Path = new PropertyPath("Value"),

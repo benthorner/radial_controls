@@ -15,10 +15,13 @@ namespace Thorner.RadialControls.TemplateControls
         #region Dependency Properties
 
         public static readonly DependencyProperty AngleProperty = DependencyProperty.RegisterAttached(
-            "Angle", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0));
+            "Angle", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
 
         public static readonly DependencyProperty OriginProperty = DependencyProperty.RegisterAttached(
-            "Origin", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0));
+            "Origin", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
+
+        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.Register(
+            "Thickness", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0));
 
         #endregion
 
@@ -36,14 +39,8 @@ namespace Thorner.RadialControls.TemplateControls
 
         public double Thickness
         {
-            get
-            {
-                if (Children.Count == 0) return 0.0;
-
-                return Children.Max(child => Math.Max(
-                    child.DesiredSize.Width, child.DesiredSize.Height
-                ));
-            }
+            get { return (double)GetValue(ThicknessProperty); }
+            set { SetValue(ThicknessProperty, value); }
         }
 
         public static void SetAngle(DependencyObject o, double value)
@@ -62,33 +59,61 @@ namespace Thorner.RadialControls.TemplateControls
 
         protected override Size MeasureOverride(Size availableSize)
         {
+            foreach (var child in Children)
+            {
+                child.Measure(new Size(
+                    Double.PositiveInfinity, Double.PositiveInfinity
+                ));
+            }
+
             var length = Math.Min(
                 availableSize.Width, availableSize.Height
             );
 
-            foreach (var child in Children)
-            {
-                child.Measure(new Size(length / 2, length / 2));
-            }
-
+            Thickness = CalculateThickness(Children);
             return new Size(length, length);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            var length = Math.Min(
+            var radius = Math.Min(
                 finalSize.Width, finalSize.Height
-            );
+            ) / 2;
 
-            var ringRadius = (length - Thickness) / 2;
+            foreach(var child in Children)
+            {
+                var topLeft = new Point(
+                    radius - child.DesiredSize.Width / 2,
+                    radius - child.DesiredSize.Height / 2
+                );
+
+                child.Arrange(
+                    new Rect(topLeft, child.DesiredSize)
+                );
+            }
+
+            Thickness = CalculateThickness(Children);
+            var ringRadius = radius - Thickness / 2;
 
             foreach (var child in Children)
             {
-                var origin = GetOrigin(child).ToRadians();
+                TransformChild(child, ringRadius);
+            }
 
-                child.RenderTransform = new TransformGroup
-                {
-                    Children = new TransformCollection
+            return new Size(radius * 2, radius * 2);
+        }
+
+        #endregion
+
+        #region Private Members
+
+        private void TransformChild(UIElement child, double ringRadius)
+        {
+            var origin = GetOrigin(child).ToRadians();
+
+            child.RenderTransform = new TransformGroup
+            {
+                Children = new TransformCollection
                     {
                         new TranslateTransform { 
                             X = ringRadius * Math.Sin(origin), 
@@ -96,19 +121,37 @@ namespace Thorner.RadialControls.TemplateControls
                         },
                         new RotateTransform { Angle = GetAngle(child) }
                     }
-                };
+            };
 
-                child.RenderTransformOrigin = new Point(0.5, 0.5);
+            child.RenderTransformOrigin = new Point(0.5, 0.5);
+        }
 
-                var topLeft = new Point(
-                    (length - child.DesiredSize.Width) / 2,
-                    (length - child.DesiredSize.Height) / 2
+        private double CalculateThickness(UIElementCollection children)
+        {
+            if (children.Count == 0) return 0.0;
+
+            return children.Max(child =>
+            {
+                return Math.Max(
+                    child.DesiredSize.Width, child.DesiredSize.Height
                 );
+            });
+        }
 
-                child.Arrange(new Rect(topLeft, child.DesiredSize));
-            }
+        #endregion
 
-            return new Size(length, length);
+        #region Event Handlers
+
+        private static void Refresh(object o, DependencyPropertyChangedEventArgs e)
+        {
+            var element = o as FrameworkElement;
+            if (element == null) return;
+
+            var parent = element.Parent as HaloRing;
+            if (parent == null) return;
+
+            parent.InvalidateMeasure();
+            parent.UpdateLayout();
         }
 
         #endregion
