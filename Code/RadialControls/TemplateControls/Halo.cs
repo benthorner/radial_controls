@@ -33,19 +33,15 @@ namespace Thorner.RadialControls.TemplateControls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var size = CalculateThickness(availableSize);
-            var area = new Rect(new Point(0, 0), size);
+            var area = new Rect(new Point(0, 0), availableSize);
 
             foreach(var child in Children)
             {
-                child.Measure(
-                    new Size(area.Width, area.Height)
-                );
-
-                area = ReCalculateArea(area, child);
+                child.Measure(new Size(area.Width, area.Height));
+                area = ReCalculateArea(area, GetThickness(child));
             }
 
-            return size;
+            return availableSize;
         }
 
         protected override Size ArrangeOverride(Size finalSize)
@@ -56,7 +52,7 @@ namespace Thorner.RadialControls.TemplateControls
             foreach(var child in Children)
             {
                 child.Arrange(area);
-                area = ReCalculateArea(area, child);
+                area = ReCalculateArea(area, GetThickness(child));
             }
 
             return size;
@@ -85,14 +81,19 @@ namespace Thorner.RadialControls.TemplateControls
             return new Size(width, height);
         }
 
-        private Rect ReCalculateArea(Rect area, DependencyObject o)
+        private Rect ReCalculateArea(Rect area, Thickness thickness)
         {
-            var thickness = GetThickness(o);
+            var xThickness = thickness.Left + thickness.Right;
+            var yThickness = thickness.Top + thickness.Bottom;
+
+            if (area.Width < xThickness || area.Height < yThickness)
+            {
+                return new Rect(0,0,0,0);
+            }
 
             return new Rect(
                 area.X + thickness.Left, area.Y + thickness.Top,
-                area.Width - (thickness.Left + thickness.Right),
-                area.Height - (thickness.Top + thickness.Bottom)
+                area.Width - xThickness, area.Height - yThickness
             );
         }
 

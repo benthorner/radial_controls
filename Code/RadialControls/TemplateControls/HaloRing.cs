@@ -57,50 +57,49 @@ namespace Thorner.RadialControls.TemplateControls
                 ));
             }
 
-            var length = Math.Min(
-                availableSize.Width, availableSize.Height
+            var thickness = RingThickness();
+
+            SetValue(
+                Halo.ThicknessProperty, new Thickness(thickness)
             );
 
-            var thickness = CalculateThickness(Children);
-            SetValue(Halo.ThicknessProperty, new Thickness(thickness));
-            return new Size(length, length);
+            return RingSize(availableSize, thickness);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            var radius = Math.Min(
-                finalSize.Width, finalSize.Height
+            var thickness = RingThickness();
+
+            var size = RingSize(finalSize, thickness);
+
+            var radius = (
+                Math.Min(size.Width, size.Height) - thickness
             ) / 2;
 
             foreach(var child in Children)
             {
-                var topLeft = new Point(
-                    radius - child.DesiredSize.Width / 2,
-                    radius - child.DesiredSize.Height / 2
-                );
-
-                child.Arrange(
-                    new Rect(topLeft, child.DesiredSize)
-                );
+                ArrangeChild(child, size);
+                TransformChild(child, radius);
             }
 
-            var thickness = CalculateThickness(Children);
-            SetValue(Halo.ThicknessProperty, new Thickness(thickness));
-            var ringRadius = radius - thickness / 2;
-
-            foreach (var child in Children)
-            {
-                TransformChild(child, ringRadius);
-            }
-
-            return new Size(radius * 2, radius * 2);
+            return size;
         }
 
         #endregion
 
         #region Private Members
 
-        private void TransformChild(UIElement child, double ringRadius)
+        private void ArrangeChild(UIElement child, Size size)
+        {
+            var topLeft = new Point(
+                (size.Width - child.DesiredSize.Width) / 2,
+                (size.Height - child.DesiredSize.Height) / 2
+            );
+
+            child.Arrange(new Rect(topLeft, child.DesiredSize));
+        }
+
+        private void TransformChild(UIElement child, double radius)
         {
             var origin = GetOrigin(child).ToRadians();
 
@@ -108,9 +107,10 @@ namespace Thorner.RadialControls.TemplateControls
             {
                 Children = new TransformCollection
                     {
-                        new TranslateTransform { 
-                            X = ringRadius * Math.Sin(origin), 
-                            Y = -ringRadius * Math.Cos(origin)
+                        new TranslateTransform 
+                        { 
+                            X = radius * Math.Sin(origin), 
+                            Y = -radius * Math.Cos(origin)
                         },
                         new RotateTransform { Angle = GetAngle(child) }
                     }
@@ -119,16 +119,24 @@ namespace Thorner.RadialControls.TemplateControls
             child.RenderTransformOrigin = new Point(0.5, 0.5);
         }
 
-        private double CalculateThickness(UIElementCollection children)
+        private double RingThickness()
         {
-            if (children.Count == 0) return 0.0;
+            if (Children.Count == 0) return 0.0;
 
-            return children.Max(child =>
+            return Children.Max(child =>
             {
                 return Math.Max(
                     child.DesiredSize.Width, child.DesiredSize.Height
                 );
             });
+        }
+
+        private Size RingSize(Size size, double thickness)
+        {
+            return new Size(
+                size.Width < thickness ? thickness : size.Width,
+                size.Height < thickness ? thickness : size.Height
+            );
         }
 
         #endregion
