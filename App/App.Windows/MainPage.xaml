@@ -9,6 +9,22 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <user:TimePicker Status="Off"/>
+        <template:Halo>
+            <template:HaloRing template:Halo.Band="2">
+                <template:HaloRingSlider Width="80"/>
+            </template:HaloRing>
+
+            <template:HaloRing template:Halo.Band="1">
+                <template:HaloRingSlider Width="80"/>
+            </template:HaloRing>
+
+            <template:HaloRing>
+                <template:HaloRingSlider Width="50"/>
+            </template:HaloRing>
+
+            <template:HaloRing>
+                <template:HaloRingSlider Width="100"/>
+            </template:HaloRing>
+        </template:Halo>
     </Grid>
 </Page>

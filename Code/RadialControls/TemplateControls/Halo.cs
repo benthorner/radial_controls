@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -11,20 +12,33 @@ namespace Thorner.RadialControls.TemplateControls
         #region Dependency Properties
 
         public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
-            "Thickness", typeof(Thickness), typeof(Halo), new PropertyMetadata(new Thickness(0.0)));
+            "Thickness", typeof(double), typeof(Halo), new PropertyMetadata(0.0, Refresh));
+
+        public static readonly DependencyProperty BandProperty = DependencyProperty.RegisterAttached(
+            "Band", typeof(int), typeof(Halo), new PropertyMetadata(0, Refresh));
 
         #endregion
 
         #region Properties
 
-        public Thickness GetThickness(DependencyObject o)
+        public static double GetThickness(DependencyObject o)
         {
-            return (Thickness)o.GetValue(ThicknessProperty);
+            return (double)o.GetValue(ThicknessProperty);
         }
 
-        public void SetThickness(DependencyObject o, Thickness value)
+        public static void SetThickness(DependencyObject o, double value)
         {
             o.SetValue(ThicknessProperty, value);
+        }
+
+        public static int GetBand(DependencyObject o)
+        {
+            return (int)o.GetValue(BandProperty);
+        }
+
+        public static void SetBand(DependencyObject o, int value)
+        {
+            o.SetValue(BandProperty, value);
         }
 
         #endregion
@@ -33,12 +47,19 @@ namespace Thorner.RadialControls.TemplateControls
 
         protected override Size MeasureOverride(Size availableSize)
         {
+            var bands = Children.OrderByDescending(child => GetBand(child))
+                .GroupBy(child => GetBand(child));
+                
             var area = new Rect(new Point(0, 0), availableSize);
 
-            foreach(var child in Children)
+            foreach(var band in bands)
             {
-                child.Measure(new Size(area.Width, area.Height));
-                area = ReCalculateArea(area, GetThickness(child));
+                foreach(var child in band)
+                {
+                    child.Measure(new Size(area.Width, area.Height));
+                }
+
+                area = InnerArea(area, BandThickness(band));
             }
 
             return availableSize;
@@ -46,13 +67,22 @@ namespace Thorner.RadialControls.TemplateControls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            var size = CalculateThickness(finalSize);
+            var bands = Children.OrderByDescending(child => GetBand(child))
+                .GroupBy(child => GetBand(child));
+
+            var thickness = bands.Sum(band => BandThickness(band));
+
+            var size = new Size(
+                Math.Max(thickness * 2, finalSize.Width),
+                Math.Max(thickness * 2, finalSize.Height)
+            );
+
             var area = new Rect(new Point(0, 0), size);
 
-            foreach(var child in Children)
+            foreach(var band in bands)
             {
-                child.Arrange(area);
-                area = ReCalculateArea(area, GetThickness(child));
+                foreach(var child in band) child.Arrange(area);
+                area = InnerArea(area, BandThickness(band));
             }
 
             return size;
@@ -62,39 +92,39 @@ namespace Thorner.RadialControls.TemplateControls
 
         #region Private Members
 
-        private Size CalculateThickness(Size size)
+        private double BandThickness(IEnumerable<UIElement> band)
         {
-            var width = 0.0;
-            var height = 0.0;
-
-            foreach (var child in Children)
-            {
-                var thickness = GetThickness(child);
-
-                width += thickness.Left + thickness.Right;
-                height += thickness.Top + thickness.Bottom;
-            }
-
-            height = Math.Max(height, size.Height);
-            width = Math.Max(width, size.Width);
-
-            return new Size(width, height);
+            if (band.Count() == 0) return 0.0;
+            return band.Max(child => GetThickness(child));
         }
 
-        private Rect ReCalculateArea(Rect area, Thickness thickness)
+        private Rect InnerArea(Rect area, double thickness)
         {
-            var xThickness = thickness.Left + thickness.Right;
-            var yThickness = thickness.Top + thickness.Bottom;
-
-            if (area.Width < xThickness || area.Height < yThickness)
+            if (area.Width < thickness * 2 || area.Height < thickness * 2)
             {
                 return new Rect(0,0,0,0);
             }
 
             return new Rect(
-                area.X + thickness.Left, area.Y + thickness.Top,
-                area.Width - xThickness, area.Height - yThickness
+                area.X + thickness, area.Y + thickness,
+                area.Width - thickness * 2, area.Height - thickness * 2
             );
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private static void Refresh(object o, DependencyPropertyChangedEventArgs e)
+        {
+            var element = o as FrameworkElement;
+            if (element == null) return;
+
+            var parent = element.Parent as Halo;
+            if (parent == null) return;
+
+            parent.InvalidateMeasure();
+            parent.UpdateLayout();
         }
 
         #endregion

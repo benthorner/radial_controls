@@ -59,9 +59,7 @@ namespace Thorner.RadialControls.TemplateControls
 
             var thickness = RingThickness();
 
-            SetValue(
-                Halo.ThicknessProperty, new Thickness(thickness)
-            );
+            SetValue(Halo.ThicknessProperty, thickness);
 
             return RingSize(availableSize, thickness);
         }
