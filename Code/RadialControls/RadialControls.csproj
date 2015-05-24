@@ -58,8 +58,6 @@
     <Compile Include="TemplateControls\HaloArc.cs" />
     <Compile Include="TemplateControls\HaloRing.cs" />
     <Compile Include="TemplateControls\HaloRingSlider.cs" />
-    <Compile Include="TemplateControls\Clock.cs" />
-    <Compile Include="TemplateControls\ClockPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
     <Compile Include="Converters\TimeMinutesConverter.cs" />

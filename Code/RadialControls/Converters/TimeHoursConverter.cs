@@ -1,14 +1,14 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using Thorner.RadialControls.TemplateControls;
+using Thorner.RadialControls.UserControls;
 
 namespace Thorner.RadialControls.Converters
 {
     public class TimeHoursConverter : IValueConverter
     {
-        private readonly Clock _picker;
+        private readonly TimePicker _picker;
 
-        public TimeHoursConverter(Clock picker)
+        public TimeHoursConverter(TimePicker picker)
         {
             _picker = picker;
         }

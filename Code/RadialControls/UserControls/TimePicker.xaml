@@ -5,56 +5,27 @@
     xmlns:local="using:Thorner.RadialControls.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:templated="using:Thorner.RadialControls.TemplateControls"
+    xmlns:radial="using:Thorner.RadialControls.TemplateControls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
-    <Grid>
-        <templated:Clock x:Name="Clock">
-            <templated:ClockPresenter x:Name="Time"/>
-        </templated:Clock>
 
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="OnOffStates">
-                <VisualState x:Name="Off">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
-                                                       Storyboard.TargetProperty="Background">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="LightGray"/>
-                        </ObjectAnimationUsingKeyFrames>
+    <radial:Halo>
+        <radial:HaloSlice Fill="LightSkyBlue" radial:Halo.Band="2"/>
 
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
-                                                       Storyboard.TargetProperty="Foreground">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Gray"/>
-                        </ObjectAnimationUsingKeyFrames>
+        <radial:HaloRing radial:Halo.Band="2">
+            <radial:HaloRingSlider x:Name="Minutes"/>
+        </radial:HaloRing>
 
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Time" 
-                                                       Storyboard.TargetProperty="Background">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="DimGray"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
+        <radial:HaloSlice Fill="RoyalBlue" radial:Halo.Band="1"/>
 
-                <VisualState x:Name="On">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
-                                                       Storyboard.TargetProperty="Background">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="LightSkyBlue"/>
-                        </ObjectAnimationUsingKeyFrames>
+        <radial:HaloRing radial:Halo.Band="1">
+            <radial:HaloRingSlider x:Name="Hours"/>
+        </radial:HaloRing>
+        
+        <radial:HaloSlice Fill="DarkBlue"/>
 
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Clock" 
-                                                       Storyboard.TargetProperty="Foreground">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="RoyalBlue"/>
-                        </ObjectAnimationUsingKeyFrames>
-
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Time" 
-                                                       Storyboard.TargetProperty="Background">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="DarkBlue"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-    </Grid>
+        <TextBlock x:Name="Display" FontSize="30"  FontWeight="SemiBold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </radial:Halo>
 </UserControl>

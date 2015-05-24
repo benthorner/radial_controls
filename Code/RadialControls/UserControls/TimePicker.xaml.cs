@@ -1,5 +1,9 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Thorner.RadialControls.Converters;
+using Thorner.RadialControls.TemplateControls;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 
 namespace Thorner.RadialControls.UserControls
 {
@@ -7,31 +11,42 @@ namespace Thorner.RadialControls.UserControls
     {
         #region Dependency Properties
 
-        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register(
-            "Status", typeof(string), typeof(TimePicker), new PropertyMetadata("On", SetOnOffState));
+        public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
+            "Time", typeof(TimeSpan), typeof(TimePicker), new PropertyMetadata(new TimeSpan()));
 
         #endregion
 
         public TimePicker()
         {
             this.InitializeComponent();
+
+            BindingOperations.SetBinding(Hours, HaloRing.AngleProperty, new Binding
+            {
+                Source = this, Path = new PropertyPath("Time"),
+                Converter = new TimeHoursConverter(this),
+                Mode = BindingMode.TwoWay
+            });
+
+            BindingOperations.SetBinding(Minutes, HaloRing.AngleProperty, new Binding
+            {
+                Source = this, Path = new PropertyPath("Time"),
+                Converter = new TimeMinutesConverter(this),
+                Mode = BindingMode.TwoWay
+            });
+
+            BindingOperations.SetBinding(Display, TextBlock.TextProperty, new Binding
+            {
+                Source = this, Path = new PropertyPath("Time"),
+                Converter = new TimeDisplayConverter()
+            });
         }
 
         #region Properties
 
-        public string Status
+        public TimeSpan Time
         {
-            get { return (string)GetValue(StatusProperty); }
-            set { SetValue(StatusProperty, value); }
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private static void SetOnOffState(object o, DependencyPropertyChangedEventArgs e)
-        {
-            VisualStateManager.GoToState((TimePicker)o, (string) e.NewValue, false);
+            get { return (TimeSpan)GetValue(TimeProperty); }
+            set { SetValue(TimeProperty, value); }
         }
 
         #endregion
