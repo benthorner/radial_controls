@@ -10,21 +10,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <template:Halo>
-            <template:HaloRing template:Halo.Band="2">
-                <template:HaloRingSlider Width="80"/>
-            </template:HaloRing>
-
-            <template:HaloRing template:Halo.Band="1">
-                <template:HaloRingSlider Width="80"/>
-            </template:HaloRing>
-
-            <template:HaloRing>
-                <template:HaloRingSlider Width="50"/>
-            </template:HaloRing>
-
-            <template:HaloRing>
-                <template:HaloRingSlider Width="100"/>
-            </template:HaloRing>
+            <user:TimePicker/>
         </template:Halo>
     </Grid>
 </Page>

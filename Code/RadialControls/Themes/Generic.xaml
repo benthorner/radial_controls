@@ -11,17 +11,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Clock">
                     <local:Halo>
-                        <local:Disc Background="{TemplateBinding Background}"/>
+                        <local:HaloSlice Fill="{TemplateBinding Background}" local:Halo.Band="2"/>
                         
-                        <local:HaloRing>                            
+                        <local:HaloRing local:Halo.Band="2">                            
                             <local:HaloRingSlider x:Name="PART_MinutesSlider"
                                                   Width="{TemplateBinding HandSize}"
                                                   Background="{TemplateBinding HandFill}"/>
                         </local:HaloRing>
 
-                        <local:Disc Background="{TemplateBinding Foreground}"/>
+                        <local:HaloSlice Fill="{TemplateBinding Foreground}" local:Halo.Band="1"/>
 
-                        <local:HaloRing>                            
+                        <local:HaloRing local:Halo.Band="1">                            
                             <local:HaloRingSlider x:Name="PART_HoursSlider"
                                                   Width="{TemplateBinding HandSize}"
                                                   Background="{TemplateBinding HandFill}"/>
@@ -38,34 +38,13 @@
         <Setter Property="HandFill" Value="AliceBlue"/>
     </Style>
     
-    <Style TargetType="local:Disc">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:Disc">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
-                            <Viewbox>
-                                <Ellipse Width="1" Height="1" Fill="{TemplateBinding Background}"/>
-                            </Viewbox>
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
     <Style TargetType="local:ClockPresenter">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ClockPresenter">
-                    <Grid>
-                        <local:Disc Background="{TemplateBinding Background}"/>
-                        
-                        <TextBlock x:Name="PART_Display"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                    </Grid> 
+                    <TextBlock x:Name="PART_Display"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -54,8 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\TimeDisplayConverter.cs" />
-    <Compile Include="TemplateControls\Disc.cs" />
     <Compile Include="TemplateControls\Halo.cs" />
+    <Compile Include="TemplateControls\HaloArc.cs" />
     <Compile Include="TemplateControls\HaloRing.cs" />
     <Compile Include="TemplateControls\HaloRingSlider.cs" />
     <Compile Include="TemplateControls\Clock.cs" />
@@ -63,11 +63,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
     <Compile Include="Converters\TimeMinutesConverter.cs" />
+    <Compile Include="TemplateControls\HaloSlice.cs" />
     <Compile Include="UserControls\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Circle.cs" />
     <Compile Include="ViewModels\Double.cs" />
-    <Compile Include="ViewModels\Fan.cs" />
     <Compile Include="ViewModels\Point.cs" />
     <Compile Include="ViewModels\Vector.cs" />
   </ItemGroup>
