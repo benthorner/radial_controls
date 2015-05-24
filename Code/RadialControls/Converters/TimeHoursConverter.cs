@@ -15,13 +15,13 @@ namespace Thorner.RadialControls.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var hours = _picker.Value.TotalHours;
+            var hours = _picker.Time.TotalHours;
             return ((hours % 12) / 12) * 360;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            var span = _picker.Value;
+            var span = _picker.Time;
 
             var newHours = (((double) value % 360) / 360) * 12;
             var offset = WrapPeriod(span, newHours);

@@ -1,27 +1,19 @@
 ﻿using System;
+using Thorner.RadialControls.Converters;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using Thorner.RadialControls.Converters;
-using Windows.UI.Xaml.Media;
-using Windows.UI;
 
 namespace Thorner.RadialControls.TemplateControls
 {
-    [TemplatePart(Name = "PART_HoursSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_MinutesSlider", Type = typeof(Slider))]
+    [TemplatePart(Name = "PART_HoursSlider", Type = typeof(HaloRingSlider))]
+    [TemplatePart(Name = "PART_MinutesSlider", Type = typeof(HaloRingSlider))]
     public class Clock : ContentControl
     {
         #region Dependency Properties
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(new TimeSpan()));
-
-        public static readonly DependencyProperty HandSizeProperty = DependencyProperty.Register(
-            "HandSize", typeof(double), typeof(Clock), new PropertyMetadata(50));
-
-        public static readonly DependencyProperty HandFillProperty = DependencyProperty.Register(
-            "HandFill", typeof(Brush), typeof(Clock), new PropertyMetadata(null));
+        public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
+            "Time", typeof(TimeSpan), typeof(Clock), new PropertyMetadata(new TimeSpan()));
 
         #endregion
 
@@ -32,22 +24,10 @@ namespace Thorner.RadialControls.TemplateControls
 
         #region Properties
 
-        public TimeSpan Value
+        public TimeSpan Time
         {
-            get { return (TimeSpan)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
-        }
-
-        public double HandSize
-        {
-            get { return (double)GetValue(HandSizeProperty); }
-            set { SetValue(HandSizeProperty, value); }
-        }
-
-        public Brush HandFill
-        {
-            get { return (Brush)GetValue(HandFillProperty); }
-            set { SetValue(HandFillProperty, value); }
+            get { return (TimeSpan)GetValue(TimeProperty); }
+            set { SetValue(TimeProperty, value); }
         }
 
         #endregion
@@ -59,7 +39,7 @@ namespace Thorner.RadialControls.TemplateControls
             BindingOperations.SetBinding(GetTemplateChild("PART_HoursSlider"), HaloRing.AngleProperty,
                 new Binding
                 {
-                    Source = this, Path = new PropertyPath("Value"),
+                    Source = this, Path = new PropertyPath("Time"),
                     Converter = new TimeHoursConverter(this),
                     Mode = BindingMode.TwoWay
                 });
@@ -67,7 +47,7 @@ namespace Thorner.RadialControls.TemplateControls
             BindingOperations.SetBinding(GetTemplateChild("PART_MinutesSlider"), HaloRing.AngleProperty,
                 new Binding
                 {
-                    Source = this, Path = new PropertyPath("Value"),
+                    Source = this, Path = new PropertyPath("Time"),
                     Converter = new TimeMinutesConverter(this),
                     Mode = BindingMode.TwoWay
                 });

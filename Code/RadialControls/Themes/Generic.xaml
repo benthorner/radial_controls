@@ -14,17 +14,13 @@
                         <local:HaloSlice Fill="{TemplateBinding Background}" local:Halo.Band="2"/>
                         
                         <local:HaloRing local:Halo.Band="2">                            
-                            <local:HaloRingSlider x:Name="PART_MinutesSlider"
-                                                  Width="{TemplateBinding HandSize}"
-                                                  Background="{TemplateBinding HandFill}"/>
+                            <local:HaloRingSlider x:Name="PART_MinutesSlider"/>
                         </local:HaloRing>
 
                         <local:HaloSlice Fill="{TemplateBinding Foreground}" local:Halo.Band="1"/>
 
                         <local:HaloRing local:Halo.Band="1">                            
-                            <local:HaloRingSlider x:Name="PART_HoursSlider"
-                                                  Width="{TemplateBinding HandSize}"
-                                                  Background="{TemplateBinding HandFill}"/>
+                            <local:HaloRingSlider x:Name="PART_HoursSlider"/>
                         </local:HaloRing>
                         
                         <ContentPresenter/>
@@ -35,7 +31,6 @@
         
         <Setter Property="Background" Value="LightSkyBlue"/>
         <Setter Property="Foreground" Value="RoyalBlue"/>
-        <Setter Property="HandFill" Value="AliceBlue"/>
     </Style>
     
     <Style TargetType="local:ClockPresenter">
@@ -90,5 +85,6 @@
         </Setter>
         
         <Setter Property="Background" Value="AliceBlue"/>
+        <Setter Property="Width" Value="50"/>
     </Style>
 </ResourceDictionary>

@@ -24,7 +24,8 @@ namespace Thorner.RadialControls.TemplateControls
 
             BindingOperations.SetBinding(display, TextBlock.TextProperty, new Binding
             {
-                Source = FindParentClock(), Path = new PropertyPath("Value"),
+                Source = FindParentClock(), 
+                Path = new PropertyPath("Time"),
                 Converter = new TimeDisplayConverter()
             });
         }

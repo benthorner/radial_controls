@@ -15,7 +15,7 @@ namespace Thorner.RadialControls.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var minutes = _picker.Value.TotalMinutes;
+            var minutes = _picker.Time.TotalMinutes;
             return (minutes / 60) * 360;
         }
 
@@ -23,7 +23,7 @@ namespace Thorner.RadialControls.Converters
         {
             var newMinutes = (((double) value % 360) / 360) * 60;
             var seconds = (newMinutes * 60) % 60;
-            var hours = WrapHours(_picker.Value, newMinutes);
+            var hours = WrapHours(_picker.Time, newMinutes);
 
             return new TimeSpan(
                 hours, (int) newMinutes, (int) seconds
