@@ -56,12 +56,13 @@
     <Compile Include="Converters\TimeDisplayConverter.cs" />
     <Compile Include="TemplateControls\Halo.cs" />
     <Compile Include="TemplateControls\HaloArc.cs" />
+    <Compile Include="TemplateControls\HaloLabel.cs" />
     <Compile Include="TemplateControls\HaloRing.cs" />
-    <Compile Include="TemplateControls\HaloRingSlider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
     <Compile Include="Converters\TimeMinutesConverter.cs" />
     <Compile Include="TemplateControls\HaloSlice.cs" />
+    <Compile Include="TemplateControls\Slider.cs" />
     <Compile Include="UserControls\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>

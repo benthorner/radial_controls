@@ -1,6 +1,6 @@
 ﻿using System;
 using Thorner.RadialControls.Converters;
-using Thorner.RadialControls.TemplateControls;
+using Templates = Thorner.RadialControls.TemplateControls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -20,18 +20,16 @@ namespace Thorner.RadialControls.UserControls
         {
             this.InitializeComponent();
 
-            BindingOperations.SetBinding(Hours, HaloRing.AngleProperty, new Binding
+            BindingOperations.SetBinding(Hours, Templates.Slider.AngleProperty, new Binding
             {
                 Source = this, Path = new PropertyPath("Time"),
-                Converter = new TimeHoursConverter(this),
-                Mode = BindingMode.TwoWay
+                Converter = new TimeHoursConverter(this), Mode = BindingMode.TwoWay
             });
 
-            BindingOperations.SetBinding(Minutes, HaloRing.AngleProperty, new Binding
+            BindingOperations.SetBinding(Minutes, Templates.Slider.AngleProperty, new Binding
             {
                 Source = this, Path = new PropertyPath("Time"),
-                Converter = new TimeMinutesConverter(this),
-                Mode = BindingMode.TwoWay
+                Converter = new TimeMinutesConverter(this), Mode = BindingMode.TwoWay
             });
 
             BindingOperations.SetBinding(Display, TextBlock.TextProperty, new Binding

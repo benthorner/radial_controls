@@ -17,21 +17,21 @@ namespace Thorner.RadialControls.TemplateControls
         public static readonly DependencyProperty AngleProperty = DependencyProperty.RegisterAttached(
             "Angle", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
 
-        public static readonly DependencyProperty OriginProperty = DependencyProperty.RegisterAttached(
-            "Origin", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.RegisterAttached(
+            "Offset", typeof(double), typeof(HaloRing), new PropertyMetadata(0.0, Refresh));
 
         #endregion
 
         #region Properties
 
-        public static double GetOrigin(DependencyObject o)
+        public static double GetOffset(DependencyObject o)
         {
-            return (double)o.GetValue(HaloRing.OriginProperty);
+            return (double)o.GetValue(HaloRing.OffsetProperty);
         }
 
-        public static void SetOrigin(DependencyObject o, double value)
+        public static void SetOffset(DependencyObject o, double value)
         {
-            o.SetValue(HaloRing.OriginProperty, value);
+            o.SetValue(HaloRing.OffsetProperty, value);
         }
 
         public static void SetAngle(DependencyObject o, double value)
@@ -57,18 +57,17 @@ namespace Thorner.RadialControls.TemplateControls
                 ));
             }
 
-            var thickness = RingThickness();
+            SetValue(
+                Halo.ThicknessProperty, RingThickness()
+            );
 
-            SetValue(Halo.ThicknessProperty, thickness);
-
-            return RingSize(availableSize, thickness);
+            return RingSize(availableSize);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
             var thickness = RingThickness();
-
-            var size = RingSize(finalSize, thickness);
+            var size = RingSize(finalSize);
 
             var radius = (
                 Math.Min(size.Width, size.Height) - thickness
@@ -99,7 +98,7 @@ namespace Thorner.RadialControls.TemplateControls
 
         private void TransformChild(UIElement child, double radius)
         {
-            var origin = GetOrigin(child).ToRadians();
+            var offset = GetOffset(child).ToRadians();
 
             child.RenderTransform = new TransformGroup
             {
@@ -107,14 +106,24 @@ namespace Thorner.RadialControls.TemplateControls
                     {
                         new TranslateTransform 
                         { 
-                            X = radius * Math.Sin(origin), 
-                            Y = -radius * Math.Cos(origin)
+                            X = radius * Math.Sin(offset), 
+                            Y = -radius * Math.Cos(offset)
                         },
                         new RotateTransform { Angle = GetAngle(child) }
                     }
             };
 
             child.RenderTransformOrigin = new Point(0.5, 0.5);
+        }
+
+        private Size RingSize(Size size)
+        {
+            var thickness = RingThickness();
+
+            return new Size(
+                size.Width < thickness ? thickness : size.Width,
+                size.Height < thickness ? thickness : size.Height
+            );
         }
 
         private double RingThickness()
@@ -127,14 +136,6 @@ namespace Thorner.RadialControls.TemplateControls
                     child.DesiredSize.Width, child.DesiredSize.Height
                 );
             });
-        }
-
-        private Size RingSize(Size size, double thickness)
-        {
-            return new Size(
-                size.Width < thickness ? thickness : size.Width,
-                size.Height < thickness ? thickness : size.Height
-            );
         }
 
         #endregion

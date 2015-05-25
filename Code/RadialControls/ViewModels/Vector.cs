@@ -2,15 +2,16 @@
 
 namespace Thorner.RadialControls.ViewModels
 {
-    public class Vector
+    public struct Vector
     {
+        public double X, Y;
+
         public Vector(double x, double y)
         {
             X = x; Y = y;
         }
 
-        double X { get; set; }
-        double Y { get; set; }
+        #region Properties
 
         public double Length
         {
@@ -20,20 +21,29 @@ namespace Thorner.RadialControls.ViewModels
             }
         }
 
+        #endregion
+
         public double AngleTo(Vector other)
         {
             var dotProduct = DotProduct(other);
+            var crossProduct = CrossProduct(other);
 
             var angle = Math.Acos(
                 dotProduct / (Length * other.Length)
-            ) * 180 / Math.PI;
+            ).ToDegrees();
 
-            return (other.X < X) ? (360 - angle) : angle;
+            var otherWay = crossProduct > 0;
+            return otherWay ? (360 - angle) : angle;
         }
 
         public double DotProduct(Vector other)
         {
             return (X * other.X) + (Y * other.Y);
+        }
+
+        public double CrossProduct(Vector other)
+        {
+            return (X * other.Y) + (Y * other.X);
         }
     }
 }

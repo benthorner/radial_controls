@@ -12,19 +12,13 @@
 
     <radial:Halo>
         <radial:HaloSlice Fill="LightSkyBlue" radial:Halo.Band="2"/>
-
-        <radial:HaloRing radial:Halo.Band="2">
-            <radial:HaloRingSlider x:Name="Minutes"/>
-        </radial:HaloRing>
+        <radial:Slider x:Name="Minutes" radial:Halo.Band="2" radial:Halo.Thickness="50"/>
 
         <radial:HaloSlice Fill="RoyalBlue" radial:Halo.Band="1"/>
-
-        <radial:HaloRing radial:Halo.Band="1">
-            <radial:HaloRingSlider x:Name="Hours"/>
-        </radial:HaloRing>
+        <radial:Slider x:Name="Hours" radial:Halo.Band="1" radial:Halo.Thickness="50"/>
         
         <radial:HaloSlice Fill="DarkBlue"/>
-
+        
         <TextBlock x:Name="Display" FontSize="30"  FontWeight="SemiBold"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </radial:Halo>

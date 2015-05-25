@@ -9,8 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <template:Halo>
-            <user:TimePicker/>
-        </template:Halo>
+        <user:TimePicker/>
     </Grid>
 </Page>

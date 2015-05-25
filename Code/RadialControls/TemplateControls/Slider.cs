@@ -1,17 +1,43 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Thorner.RadialControls.ViewModels;
-using Windows.UI.Xaml;
-using Windows.Foundation;
 
 namespace Thorner.RadialControls.TemplateControls
 {
-    public sealed class HaloRingSlider : Button
+    public class Slider : Control
     {
-        public HaloRingSlider()
+        #region DependencyProperties
+
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
+            "Offset", typeof(double), typeof(Slider), new PropertyMetadata(0.0));
+
+        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
+            "Angle", typeof(double), typeof(Slider), new PropertyMetadata(0.0));
+
+        #endregion
+
+        public Slider()
         {
-            this.DefaultStyleKey = typeof(HaloRingSlider);
+            DefaultStyleKey = typeof(Slider);
         }
+
+        #region Properties
+
+        public double Offset
+        {
+            get { return (double)GetValue(OffsetProperty); }
+            set { SetValue(OffsetProperty, value); }
+        }
+
+        public double Angle
+        {
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
+        #endregion
 
         #region UIElement Overrides
 
@@ -44,7 +70,6 @@ namespace Thorner.RadialControls.TemplateControls
 
         private void StealPointer(object sender, PointerRoutedEventArgs e)
         {
-            VisualStateManager.GoToState(this, "Sliding", false);
             CapturePointer(e.Pointer);
         }
 
@@ -55,15 +80,14 @@ namespace Thorner.RadialControls.TemplateControls
                 return;
             }
 
-            SetValue(HaloRing.AngleProperty,
-                SliderAngle(e) - (double)GetValue(HaloRing.OriginProperty)
+            SetValue(AngleProperty,
+                SliderAngle(e) - (double)GetValue(OffsetProperty)
             );
         }
 
         private void ReleasePointer(object sender, PointerRoutedEventArgs e)
         {
             ReleasePointerCapture(e.Pointer);
-            VisualStateManager.GoToState(this, "Resting", false);
         }
 
         #endregion
@@ -72,7 +96,7 @@ namespace Thorner.RadialControls.TemplateControls
 
         private double SliderAngle(PointerRoutedEventArgs e)
         {
-            var parent = Parent as HaloRing;
+            var parent = Parent as FrameworkElement;
             if (parent == null) return 0.0;
 
             var point = e.GetCurrentPoint(parent).Position;
@@ -81,8 +105,10 @@ namespace Thorner.RadialControls.TemplateControls
                 parent.ActualWidth / 2, parent.ActualHeight / 2
             );
 
-            var hand = point.RelativeTo(centre);
-            return new Vector(0, -1).AngleTo(hand);
+            var thumb = point.RelativeTo(centre);
+            var vertical = new Vector(0, -1);
+
+            return thumb.AngleTo(vertical);
         }
 
         #endregion
