@@ -12,7 +12,7 @@ namespace Thorner.RadialControls.UserControls
         #region Dependency Properties
 
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register(
-            "Time", typeof(TimeSpan), typeof(TimePicker), new PropertyMetadata(new TimeSpan()));
+            "Time", typeof(TimeSpan), typeof(TimePicker), new PropertyMetadata(new TimeSpan(7, 0, 0)));
 
         #endregion
 
@@ -20,13 +20,13 @@ namespace Thorner.RadialControls.UserControls
         {
             this.InitializeComponent();
 
-            BindingOperations.SetBinding(Hours, Templates.Slider.AngleProperty, new Binding
+            BindingOperations.SetBinding(Hours, ArcSlider.AngleProperty, new Binding
             {
                 Source = this, Path = new PropertyPath("Time"),
                 Converter = new TimeHoursConverter(this), Mode = BindingMode.TwoWay
             });
 
-            BindingOperations.SetBinding(Minutes, Templates.Slider.AngleProperty, new Binding
+            BindingOperations.SetBinding(Minutes, ArcSlider.AngleProperty, new Binding
             {
                 Source = this, Path = new PropertyPath("Time"),
                 Converter = new TimeMinutesConverter(this), Mode = BindingMode.TwoWay

@@ -11,15 +11,29 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:Slider">
                     <local:HaloRing>
-                        <Viewbox local:HaloRing.Angle="{Binding Angle, Mode=TwoWay,
-                                     RelativeSource={RelativeSource TemplatedParent}}"
-                                 local:HaloRing.Offset="{Binding Offset, Mode=TwoWay,
-                                     RelativeSource={RelativeSource TemplatedParent}}">
-                            <Ellipse Fill="AliceBlue"
-                                     Width="{TemplateBinding local:Halo.Thickness}"
-                                     Height="{TemplateBinding local:Halo.Thickness}"/>
-                        </Viewbox>
+                        <Grid local:HaloRing.Angle="{Binding Angle, Mode=TwoWay,
+                                  RelativeSource={RelativeSource TemplatedParent}}"
+                              local:HaloRing.Offset="{Binding Offset, Mode=TwoWay,
+                                  RelativeSource={RelativeSource TemplatedParent}}">
+                            <ContentControl Template="{TemplateBinding Thumb}"
+                                Width="{TemplateBinding local:Halo.Thickness}"
+                                Height="{TemplateBinding local:Halo.Thickness}"
+                                Background="{TemplateBinding Background}"/>
+                        </Grid>
                     </local:HaloRing>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="Background" Value="AliceBlue"/>
+        <Setter Property="local:Halo.Thickness" Value="50"/>
+        
+        <Setter Property="Thumb">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Ellipse Width="{TemplateBinding Width}" 
+                             Height="{TemplateBinding Height}"
+                             Fill="{TemplateBinding Background}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

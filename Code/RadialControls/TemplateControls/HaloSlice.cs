@@ -12,11 +12,14 @@ namespace Thorner.RadialControls.TemplateControls
     {
         #region DependencyProperties
 
+        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
+            "Angle", typeof(double), typeof(HaloSlice), new PropertyMetadata(0.0, Refresh));
+
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
             "Offset", typeof(double), typeof(HaloSlice), new PropertyMetadata(0.0, Refresh));
 
-        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
-            "Angle", typeof(double), typeof(HaloSlice), new PropertyMetadata(360.0, Refresh));
+        public static readonly DependencyProperty SpreadProperty = DependencyProperty.Register(
+            "Spread", typeof(double), typeof(HaloSlice), new PropertyMetadata(360.0, Refresh));
 
         #endregion
 
@@ -52,16 +55,22 @@ namespace Thorner.RadialControls.TemplateControls
 
         #region Properties
 
+        public double Angle
+        {
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
         public double Offset
         {
             get { return (double)GetValue(OffsetProperty); }
             set { SetValue(OffsetProperty, value); }
         }
 
-        public double Angle
+        public double Spread
         {
-            get { return (double)GetValue(AngleProperty); }
-            set { SetValue(AngleProperty, value); }
+            get { return (double)GetValue(SpreadProperty); }
+            set { SetValue(SpreadProperty, value); }
         }
 
         #endregion
@@ -92,7 +101,7 @@ namespace Thorner.RadialControls.TemplateControls
         {
             var slice = (HaloSlice)o;
 
-            if (Math.Round(slice.Angle / 360) != 0)
+            if (Math.Round(slice.Spread / 360) != 0)
             {
                 slice.Data = slice.ellipse;
             }
@@ -110,10 +119,10 @@ namespace Thorner.RadialControls.TemplateControls
         {
             arcFigure.StartPoint = circle.Center;
 
-            sliceStart.Point = circle.PointAt(Offset);
+            sliceStart.Point = circle.PointAt(Angle + Offset);
             sliceEnd.Point = circle.Center;
 
-            arcSegment.Point = circle.PointAt(Offset + Angle);
+            arcSegment.Point = circle.PointAt(Angle + Offset + Spread);
             arcSegment.Size = circle.Size();
         }
 

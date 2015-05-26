@@ -6,9 +6,9 @@ namespace Thorner.RadialControls.Converters
 {
     public class TimeHoursConverter : IValueConverter
     {
-        private readonly TimePicker _picker;
+        private readonly dynamic _picker;
 
-        public TimeHoursConverter(TimePicker picker)
+        public TimeHoursConverter(dynamic picker)
         {
             _picker = picker;
         }

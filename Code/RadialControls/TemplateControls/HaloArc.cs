@@ -12,11 +12,14 @@ namespace Thorner.RadialControls.TemplateControls
     {
         #region Dependency Properties
 
-        public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
-            "Offset", typeof(double), typeof(HaloArc), new PropertyMetadata(0.0, Refresh));
-
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
             "Angle", typeof(double), typeof(HaloArc), new PropertyMetadata(0.0, Refresh));
+
+        public static readonly DependencyProperty SpreadProperty = DependencyProperty.Register(
+            "Spread", typeof(double), typeof(HaloArc), new PropertyMetadata(360.0, Refresh));
+
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
+            "Offset", typeof(double), typeof(HaloArc), new PropertyMetadata(0.0, Refresh));
 
         public static readonly DependencyProperty TensionProperty = DependencyProperty.Register(
             "Tension", typeof(double), typeof(HaloArc), new PropertyMetadata(0.0, Refresh));
@@ -45,16 +48,22 @@ namespace Thorner.RadialControls.TemplateControls
 
         #region Properties
 
+        public double Angle
+        {
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
         public double Offset
         {
             get { return (double)GetValue(OffsetProperty); }
             set { SetValue(OffsetProperty, value); }
         }
 
-        public double Angle
+        public double Spread
         {
-            get { return (double)GetValue(AngleProperty); }
-            set { SetValue(AngleProperty, value); }
+            get { return (double)GetValue(SpreadProperty); }
+            set { SetValue(SpreadProperty, value); }
         }
 
         public double Tension
@@ -99,9 +108,10 @@ namespace Thorner.RadialControls.TemplateControls
         private void ArrangePath(Circle circle)
         {
             var tension = Tension % 1;
+            var angle = Angle + Offset;
 
-            var startAngle = Offset - tension * Angle;
-            var endAngle = Offset + (1 - tension) * Angle;
+            var startAngle = angle - tension * Spread;
+            var endAngle = angle + (1 - tension) * Spread;
 
             figure.StartPoint = circle.PointAt(startAngle);
             segment.Point = circle.PointAt(endAngle);

@@ -43,6 +43,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UserControls\ArcSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -63,6 +67,9 @@
     <Compile Include="Converters\TimeMinutesConverter.cs" />
     <Compile Include="TemplateControls\HaloSlice.cs" />
     <Compile Include="TemplateControls\Slider.cs" />
+    <Compile Include="UserControls\ArcSlider.xaml.cs">
+      <DependentUpon>ArcSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>

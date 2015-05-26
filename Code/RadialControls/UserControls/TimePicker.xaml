@@ -5,17 +5,14 @@
     xmlns:local="using:Thorner.RadialControls.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:radial="using:Thorner.RadialControls.TemplateControls"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    xmlns:radial="using:Thorner.RadialControls.TemplateControls">
 
     <radial:Halo>
         <radial:HaloSlice Fill="LightSkyBlue" radial:Halo.Band="2"/>
-        <radial:Slider x:Name="Minutes" radial:Halo.Band="2" radial:Halo.Thickness="50"/>
+        <local:ArcSlider x:Name="Minutes" radial:Halo.Band="2"/>
 
         <radial:HaloSlice Fill="RoyalBlue" radial:Halo.Band="1"/>
-        <radial:Slider x:Name="Hours" radial:Halo.Band="1" radial:Halo.Thickness="50"/>
+        <local:ArcSlider x:Name="Hours" radial:Halo.Band="1"/>
         
         <radial:HaloSlice Fill="DarkBlue"/>
         

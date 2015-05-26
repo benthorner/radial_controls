@@ -16,6 +16,9 @@ namespace Thorner.RadialControls.TemplateControls
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
             "Angle", typeof(double), typeof(Slider), new PropertyMetadata(0.0));
 
+        public static readonly DependencyProperty ThumbProperty = DependencyProperty.Register(
+            "Thumb", typeof(ControlTemplate), typeof(Slider), new PropertyMetadata(null));
+
         #endregion
 
         public Slider()
@@ -35,6 +38,12 @@ namespace Thorner.RadialControls.TemplateControls
         {
             get { return (double)GetValue(AngleProperty); }
             set { SetValue(AngleProperty, value); }
+        }
+
+        public ControlTemplate Thumb
+        {
+            get { return (ControlTemplate)GetValue(ThumbProperty); }
+            set { SetValue(ThumbProperty, value); }
         }
 
         #endregion
