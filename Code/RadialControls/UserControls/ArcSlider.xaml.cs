@@ -11,6 +11,14 @@ namespace Thorner.RadialControls.UserControls
         {
             this.InitializeComponent();
 
+            VisualStateManager.GoToState(this, "Resting", false);
+
+            SlideStart += (sender, args) =>
+                VisualStateManager.GoToState(this, "Sliding", false);
+
+            SlideStop += (sender, args) =>
+                VisualStateManager.GoToState(this, "Resting", false);
+
             SetValue(Templates.Halo.ThicknessProperty, 50.0);
         }
     }

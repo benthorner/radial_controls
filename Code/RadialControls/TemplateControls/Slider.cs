@@ -3,11 +3,18 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Thorner.RadialControls.ViewModels;
+using System;
 
 namespace Thorner.RadialControls.TemplateControls
 {
     public class Slider : Control
     {
+        #region Events
+
+        public event Action<object, SliderEventArgs> SlideStart, SlideStop;
+
+        #endregion
+
         #region DependencyProperties
 
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
@@ -79,6 +86,7 @@ namespace Thorner.RadialControls.TemplateControls
 
         private void StealPointer(object sender, PointerRoutedEventArgs e)
         {
+            SlideStart(this, new SliderEventArgs(Angle));
             CapturePointer(e.Pointer);
         }
 
@@ -97,6 +105,7 @@ namespace Thorner.RadialControls.TemplateControls
         private void ReleasePointer(object sender, PointerRoutedEventArgs e)
         {
             ReleasePointerCapture(e.Pointer);
+            SlideStop(this, new SliderEventArgs(Angle));
         }
 
         #endregion
@@ -121,5 +130,15 @@ namespace Thorner.RadialControls.TemplateControls
         }
 
         #endregion
+    }
+
+    public sealed class SliderEventArgs
+    {
+        public SliderEventArgs(double angle)
+        {
+            Angle = angle;
+        }
+
+        public double Angle { get; private set; }
     }
 }
