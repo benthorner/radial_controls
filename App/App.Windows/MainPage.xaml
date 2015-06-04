@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <user:TimePicker/>
+        <template:HaloLabel Text="RADIAL CONTROLS MANCHESTER"/>
     </Grid>
 </Page>
