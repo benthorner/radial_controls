@@ -47,6 +47,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\RingLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -60,7 +64,7 @@
     <Compile Include="Converters\TimeDisplayConverter.cs" />
     <Compile Include="TemplateControls\Halo.cs" />
     <Compile Include="TemplateControls\HaloArc.cs" />
-    <Compile Include="TemplateControls\HaloLabel.cs" />
+    <Compile Include="TemplateControls\HaloChain.cs" />
     <Compile Include="TemplateControls\HaloRing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
@@ -69,6 +73,9 @@
     <Compile Include="TemplateControls\Slider.cs" />
     <Compile Include="UserControls\ArcSlider.xaml.cs">
       <DependentUpon>ArcSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RingLabel.xaml.cs">
+      <DependentUpon>RingLabel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>

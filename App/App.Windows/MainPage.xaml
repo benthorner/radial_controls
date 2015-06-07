@@ -9,22 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <template:HaloLabel Tension="0" Offset="350">
-            <TextBlock Text="R" FontSize="50" Foreground="White"/>
-            <TextBlock Text="A" FontSize="50" Foreground="White"/>
-            <TextBlock Text="D" FontSize="50" Foreground="White"/>
-            <TextBlock Text="I" FontSize="50" Foreground="White"/>
-            <TextBlock Text="A" FontSize="50" Foreground="White"/>
-            <TextBlock Text="L" FontSize="50" Foreground="White"/>
-            <Ellipse Width="30" Height="30"/>
-            <TextBlock Text="C" FontSize="50" Foreground="White"/>
-            <TextBlock Text="O" FontSize="50" Foreground="White"/>
-            <TextBlock Text="N" FontSize="50" Foreground="White"/>
-            <TextBlock Text="T" FontSize="50" Foreground="White"/>
-            <TextBlock Text="R" FontSize="50" Foreground="White"/>
-            <TextBlock Text="O" FontSize="50" Foreground="White"/>
-            <TextBlock Text="L" FontSize="50" Foreground="White"/>
-            <TextBlock Text="S" FontSize="50" Foreground="White"/>
-        </template:HaloLabel>
+        <user:RingLabel Text="RADIAL CONTROLS" FontSize="50" Inverted="true"  />
     </Grid>
 </Page>
