@@ -9,21 +9,21 @@ using Windows.UI.Text;
 
 namespace Thorner.RadialControls.TemplateControls
 {
-    public class HaloLabel : HaloRing
+    public class HaloChain : HaloRing
     {
         #region Label DependencyProperties
 
         public static readonly DependencyProperty TensionProperty = DependencyProperty.Register(
-            "Tension", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.5, Refresh));
+            "Tension", typeof(double), typeof(HaloChain), new PropertyMetadata(0.5, Refresh));
 
         public static new readonly DependencyProperty AngleProperty = DependencyProperty.Register(
-            "Angle", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.0, Refresh));
+            "Angle", typeof(double), typeof(HaloChain), new PropertyMetadata(0.0, Refresh));
 
         public static new readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
-            "Offset", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.0, Refresh));
+            "Offset", typeof(double), typeof(HaloChain), new PropertyMetadata(0.0, Refresh));
 
         public static readonly DependencyProperty SpacingProperty = DependencyProperty.Register(
-            "Spacing", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.0, Refresh));
+            "Spacing", typeof(double), typeof(HaloChain), new PropertyMetadata(0.0, Refresh));
 
         #endregion
 
@@ -81,8 +81,8 @@ namespace Thorner.RadialControls.TemplateControls
 
         private static void Refresh(object o, DependencyPropertyChangedEventArgs e)
         {
-            ((HaloLabel)o).InvalidateMeasure();
-            ((HaloLabel)o).UpdateLayout();
+            ((HaloChain)o).InvalidateMeasure();
+            ((HaloChain)o).UpdateLayout();
         }
 
         #endregion
