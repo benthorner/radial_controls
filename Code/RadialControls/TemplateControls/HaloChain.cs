@@ -63,13 +63,13 @@ namespace Thorner.RadialControls.TemplateControls
 
             var angle = -(Tension % 1) * TotalAngle(radius) + Angle;
 
-            foreach(var item in Children)
+            foreach(var link in Children)
             {
-                angle += EnterAngle(item, radius);
-                item.SetValue(HaloRing.AngleProperty, angle);
+                angle += EnterAngle(link, radius);
+                link.SetValue(HaloRing.AngleProperty, angle);
 
-                angle += ExitAngle(item, radius);
-                item.SetValue(HaloRing.OffsetProperty, Offset);
+                angle += ExitAngle(link, radius);
+                link.SetValue(HaloRing.OffsetProperty, Offset);
             }
 
             return base.ArrangeOverride(new Size(radius * 2, radius * 2));
@@ -91,22 +91,22 @@ namespace Thorner.RadialControls.TemplateControls
 
         private double TotalAngle(double radius)
         {
-            return Children.Sum(item =>
+            return Children.Sum(link =>
             {
-                return EnterAngle(item, radius) + ExitAngle(item, radius);
+                return EnterAngle(link, radius) + ExitAngle(link, radius);
             });
         }
 
-        private double EnterAngle(UIElement item, double radius)
+        private double EnterAngle(UIElement link, double radius)
         {
-            if (Children.First() == item) return 0.0;
-            return HalfAngle(item.DesiredSize, radius) + Spacing / 2;
+            if (Children.First() == link) return 0.0;
+            return HalfAngle(link.DesiredSize, radius) + Spacing / 2;
         }
 
-        private double ExitAngle(UIElement item, double radius)
+        private double ExitAngle(UIElement link, double radius)
         {
-            if (Children.Last() == item) return 0.0;
-            return HalfAngle(item.DesiredSize, radius) + Spacing / 2;
+            if (Children.Last() == link) return 0.0;
+            return HalfAngle(link.DesiredSize, radius) + Spacing / 2;
         }
 
         private double HalfAngle(Size size, double radius)

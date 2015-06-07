@@ -1,4 +1,5 @@
-﻿using Thorner.RadialControls.TemplateControls;
+﻿using Thorner.RadialControls.Converters;
+using Thorner.RadialControls.TemplateControls;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -16,22 +17,14 @@ namespace Thorner.RadialControls.UserControls
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text", typeof(string), typeof(RingLabel), new PropertyMetadata("", RefreshText));
 
-        public static readonly DependencyProperty InvertedProperty = DependencyProperty.Register(
-            "Role", typeof(bool), typeof(RingLabel), new PropertyMetadata(false, RefreshRole));
-
-        public static readonly DependencyProperty SpacingProperty = DependencyProperty.Register(
-            "Spacing", typeof(double), typeof(RingLabel), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty FlipProperty = DependencyProperty.Register(
+            "Flip", typeof(bool), typeof(RingLabel), new PropertyMetadata(false, RefreshFlip));
 
         #endregion
 
         public RingLabel()
         {
             this.InitializeComponent();
-
-            BindingOperations.SetBinding(Chain, HaloChain.SpacingProperty, new Binding
-            {
-                Source = this, Path = new PropertyPath("Spacing")
-            });
         }
 
         #region Properties
@@ -42,28 +35,22 @@ namespace Thorner.RadialControls.UserControls
             set { SetValue(TextProperty, value); }
         }
 
-        public double Spacing
+        public bool Flip
         {
-            get { return (double)GetValue(SpacingProperty); }
-            set { SetValue(SpacingProperty, value); }
-        }
-
-        public bool Inverted
-        {
-            get { return (bool)GetValue(InvertedProperty); }
-            set { SetValue(InvertedProperty, value); }
+            get { return (bool)GetValue(FlipProperty); }
+            set { SetValue(FlipProperty, value); }
         }
 
         #endregion
 
         #region Event Handlers
 
-        private static void RefreshRole(object o, DependencyPropertyChangedEventArgs e)
+        private static void RefreshFlip(object o, DependencyPropertyChangedEventArgs e)
         {
             var label = (RingLabel)o;
             var chain = (HaloChain)label.Chain;
 
-            if (label.Inverted)
+            if (label.Flip)
             {
                 chain.Offset = 180;
                 chain.FlowDirection = FlowDirection.RightToLeft;
@@ -78,8 +65,8 @@ namespace Thorner.RadialControls.UserControls
         private static void RefreshText(object o, DependencyPropertyChangedEventArgs e)
         {
             var label = (RingLabel)o;
-
             var chain = (HaloChain)label.Chain;
+
             chain.Children.Clear();
 
             foreach(var letter in label.Text)
@@ -100,14 +87,19 @@ namespace Thorner.RadialControls.UserControls
 
         private static UIElement MakeSpace(RingLabel label)
         {
-            var fontStretch = (int)label.FontStretch;
-            var stretch = 1 - (fontStretch - 5) * 0.5;
+            var space = new Rectangle();
 
-            return new Rectangle
+            BindingOperations.SetBinding(space, FrameworkElement.WidthProperty, new Binding
             {
-                Width = label.FontSize * stretch,
-                Height = label.FontSize * stretch
-            };
+                Source = label, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
+            });
+
+            BindingOperations.SetBinding(space, FrameworkElement.HeightProperty, new Binding
+            {
+                Source = label, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
+            });
+
+            return space;
         }
 
         #endregion
