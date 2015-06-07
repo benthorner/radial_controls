@@ -1,5 +1,4 @@
-﻿using Thorner.RadialControls.Converters;
-using Thorner.RadialControls.TemplateControls;
+﻿using Thorner.RadialControls.Controls;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -8,7 +7,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-namespace Thorner.RadialControls.UserControls
+namespace Thorner.RadialControls.Examples
 {
     public sealed partial class RingLabel : UserControl
     {

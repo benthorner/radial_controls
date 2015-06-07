@@ -1,11 +1,11 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using Templates = Thorner.RadialControls.TemplateControls;
+using Controls = Thorner.RadialControls.Controls;
 
-namespace Thorner.RadialControls.UserControls
+namespace Thorner.RadialControls.Examples
 {
-    public sealed partial class ArcSlider : Templates.Slider
+    public sealed partial class ArcSlider : Controls.Slider
     {
         public ArcSlider()
         {
@@ -19,7 +19,7 @@ namespace Thorner.RadialControls.UserControls
             SlideStop += (sender, args) =>
                 VisualStateManager.GoToState(this, "Resting", false);
 
-            SetValue(Templates.Halo.ThicknessProperty, 50.0);
+            SetValue(Controls.Halo.ThicknessProperty, 50.0);
         }
     }
 }

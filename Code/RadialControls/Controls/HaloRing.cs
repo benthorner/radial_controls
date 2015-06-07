@@ -6,9 +6,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using System.Collections.ObjectModel;
-using Thorner.RadialControls.ViewModels;
+using Thorner.RadialControls.Utilities;
 
-namespace Thorner.RadialControls.TemplateControls
+namespace Thorner.RadialControls.Controls
 {
     public class HaloRing : Panel
     {

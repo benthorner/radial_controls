@@ -43,15 +43,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\ArcSlider.xaml">
+    <Page Include="Examples\ArcSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\RingLabel.xaml">
+    <Page Include="Examples\RingLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TimePicker.xaml">
+    <Page Include="Examples\TimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -62,28 +62,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\TimeDisplayConverter.cs" />
-    <Compile Include="TemplateControls\Halo.cs" />
-    <Compile Include="TemplateControls\HaloArc.cs" />
-    <Compile Include="TemplateControls\HaloChain.cs" />
-    <Compile Include="TemplateControls\HaloRing.cs" />
+    <Compile Include="Controls\Halo.cs" />
+    <Compile Include="Controls\HaloArc.cs" />
+    <Compile Include="Controls\HaloChain.cs" />
+    <Compile Include="Controls\HaloRing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\TimeHoursConverter.cs" />
     <Compile Include="Converters\TimeMinutesConverter.cs" />
-    <Compile Include="TemplateControls\HaloSlice.cs" />
-    <Compile Include="TemplateControls\Slider.cs" />
-    <Compile Include="UserControls\ArcSlider.xaml.cs">
+    <Compile Include="Controls\HaloSlice.cs" />
+    <Compile Include="Controls\Slider.cs" />
+    <Compile Include="Examples\ArcSlider.xaml.cs">
       <DependentUpon>ArcSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\RingLabel.xaml.cs">
+    <Compile Include="Examples\RingLabel.xaml.cs">
       <DependentUpon>RingLabel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TimePicker.xaml.cs">
+    <Compile Include="Examples\TimePicker.xaml.cs">
       <DependentUpon>TimePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Circle.cs" />
-    <Compile Include="ViewModels\Double.cs" />
-    <Compile Include="ViewModels\Point.cs" />
-    <Compile Include="ViewModels\Vector.cs" />
+    <Compile Include="Utilities\Circle.cs" />
+    <Compile Include="Utilities\Double.cs" />
+    <Compile Include="Utilities\Point.cs" />
+    <Compile Include="Utilities\Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

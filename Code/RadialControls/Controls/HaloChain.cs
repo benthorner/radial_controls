@@ -3,11 +3,11 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Thorner.RadialControls.ViewModels;
+using Thorner.RadialControls.Utilities;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Text;
 
-namespace Thorner.RadialControls.TemplateControls
+namespace Thorner.RadialControls.Controls
 {
     public class HaloChain : HaloRing
     {

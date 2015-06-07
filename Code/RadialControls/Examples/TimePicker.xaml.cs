@@ -1,11 +1,11 @@
 ﻿using System;
 using Thorner.RadialControls.Converters;
-using Templates = Thorner.RadialControls.TemplateControls;
+using Controls = Thorner.RadialControls.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
-namespace Thorner.RadialControls.UserControls
+namespace Thorner.RadialControls.Examples
 {
     public sealed partial class TimePicker : UserControl
     {

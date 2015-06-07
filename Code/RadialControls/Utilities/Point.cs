@@ -1,6 +1,6 @@
 ﻿using Windows.Foundation;
 
-namespace Thorner.RadialControls.ViewModels
+namespace Thorner.RadialControls.Utilities
 {
     public static class PointExtensions
     {

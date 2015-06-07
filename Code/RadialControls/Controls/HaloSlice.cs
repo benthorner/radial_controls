@@ -1,12 +1,12 @@
 ﻿using System;
-using Thorner.RadialControls.ViewModels;
+using Thorner.RadialControls.Utilities;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-namespace Thorner.RadialControls.TemplateControls
+namespace Thorner.RadialControls.Controls
 {
     public class HaloSlice : Path
     {

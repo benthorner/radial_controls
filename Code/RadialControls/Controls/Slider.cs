@@ -2,10 +2,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Thorner.RadialControls.ViewModels;
+using Thorner.RadialControls.Utilities;
 using System;
 
-namespace Thorner.RadialControls.TemplateControls
+namespace Thorner.RadialControls.Controls
 {
     public class Slider : Control
     {

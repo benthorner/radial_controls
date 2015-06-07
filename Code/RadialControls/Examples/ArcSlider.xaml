@@ -1,9 +1,9 @@
 ﻿<radial:Slider
-    x:Class="Thorner.RadialControls.UserControls.ArcSlider"
+    x:Class="Thorner.RadialControls.Examples.ArcSlider"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:radial="using:Thorner.RadialControls.TemplateControls"
-    xmlns:local="using:Thorner.RadialControls.UserControls"
+    xmlns:radial="using:Thorner.RadialControls.Controls"
+    xmlns:local="using:Thorner.RadialControls.Examples"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 

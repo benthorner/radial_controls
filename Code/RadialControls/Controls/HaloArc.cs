@@ -3,10 +3,10 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
-using Thorner.RadialControls.ViewModels;
+using Thorner.RadialControls.Utilities;
 using Windows.UI.Xaml.Data;
 
-namespace Thorner.RadialControls.TemplateControls
+namespace Thorner.RadialControls.Controls
 {
     public class HaloArc : Path
     {

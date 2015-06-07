@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using Thorner.RadialControls.UserControls;
 
 namespace Thorner.RadialControls.Converters
 {

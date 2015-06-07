@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Thorner.RadialControls.ViewModels
+namespace Thorner.RadialControls.Utilities
 {
     public static class DoubleExtensions
     {
