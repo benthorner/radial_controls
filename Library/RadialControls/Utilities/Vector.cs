@@ -32,7 +32,7 @@ namespace Thorner.RadialControls.Utilities
                 dotProduct / (Length * other.Length)
             ).ToDegrees();
 
-            var otherWay = crossProduct > 0;
+            var otherWay = crossProduct < 0;
             return otherWay ? (360 - angle) : angle;
         }
 
@@ -43,7 +43,7 @@ namespace Thorner.RadialControls.Utilities
 
         public double CrossProduct(Vector other)
         {
-            return (X * other.Y) + (Y * other.X);
+            return (Y * other.X) - (X * other.Y);
         }
     }
 }

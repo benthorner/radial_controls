@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <user:RingLabel Text="RADIAL CONTROLS" FontSize="50" Flip="true"  />
+        <user:TimePicker/>
     </Grid>
 </Page>
