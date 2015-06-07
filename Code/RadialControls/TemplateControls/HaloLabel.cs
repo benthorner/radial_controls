@@ -4,24 +4,53 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Thorner.RadialControls.ViewModels;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Text;
 
 namespace Thorner.RadialControls.TemplateControls
 {
     public class HaloLabel : HaloRing
     {
-        #region DependencyProperties
+        #region Label DependencyProperties
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text", typeof(string), typeof(HaloLabel), new PropertyMetadata("", Refresh));
+        public static readonly DependencyProperty TensionProperty = DependencyProperty.Register(
+            "Tension", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.5, Refresh));
+
+        public static new readonly DependencyProperty AngleProperty = DependencyProperty.Register(
+            "Angle", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.0, Refresh));
+
+        public static new readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
+            "Offset", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.0, Refresh));
+
+        public static readonly DependencyProperty SpacingProperty = DependencyProperty.Register(
+            "Spacing", typeof(double), typeof(HaloLabel), new PropertyMetadata(0.0, Refresh));
 
         #endregion
 
         #region Properties
 
-        public string Text
+        public double Tension
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get { return (double)GetValue(TensionProperty); }
+            set { SetValue(TensionProperty, value); }
+        }
+
+        public double Angle
+        {
+            get { return (double)GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
+        public double Offset
+        {
+            get { return (double)GetValue(OffsetProperty); }
+            set { SetValue(OffsetProperty, value); }
+        }
+
+        public double Spacing
+        {
+            get { return (double)GetValue(SpacingProperty); }
+            set { SetValue(SpacingProperty, value); }
         }
 
         #endregion
@@ -30,20 +59,20 @@ namespace Thorner.RadialControls.TemplateControls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            var diameter = Math.Min(finalSize.Width, finalSize.Height);
+            var radius = Math.Min(finalSize.Width, finalSize.Height) / 2;
 
-            var totalAngle = 0.0;
+            var angle = -(Tension % 1) * TotalAngle(radius) + Angle;
 
-            foreach(var letter in Children.OfType<TextBlock>())
+            foreach(var item in Children)
             {
-                var angle = HalfAngle(letter, diameter);
-                totalAngle += angle;
+                angle += EnterAngle(item, radius);
+                item.SetValue(HaloRing.AngleProperty, angle);
 
-                letter.SetValue(HaloRing.AngleProperty, totalAngle);
-                totalAngle += angle;
+                angle += ExitAngle(item, radius);
+                item.SetValue(HaloRing.OffsetProperty, Offset);
             }
 
-            return base.ArrangeOverride(new Size(diameter, diameter));
+            return base.ArrangeOverride(new Size(radius * 2, radius * 2));
         }
 
         #endregion
@@ -52,46 +81,51 @@ namespace Thorner.RadialControls.TemplateControls
 
         private static void Refresh(object o, DependencyPropertyChangedEventArgs e)
         {
-            var label = (HaloLabel) o;
-            label.Children.Clear();
-
-            foreach(var letter in label.Text)
-            {
-                label.Children.Add(new TextBlock 
-                { 
-                    Text = letter.ToString(),
-                    FontSize = 50
-                });
-            }
+            ((HaloLabel)o).InvalidateMeasure();
+            ((HaloLabel)o).UpdateLayout();
         }
 
         #endregion
 
         #region Private Members
 
-        private double BlankWidth()
+        private double TotalAngle(double radius)
         {
-            var letters = Children.OfType<TextBlock>();
-            if (letters.Count() == 0) return 0.0;
-            return letters.Max(letter => letter.ActualWidth);
+            return Children.Sum(item =>
+            {
+                return EnterAngle(item, radius) + ExitAngle(item, radius);
+            });
         }
 
-        private double LabelThickness()
+        private double EnterAngle(UIElement item, double radius)
         {
-            return (double)GetValue(Halo.ThicknessProperty);
+            if (Children.First() == item) return 0.0;
+            return HalfAngle(item.DesiredSize, radius) + Spacing / 2;
         }
 
-        private double HalfAngle(TextBlock letter, double diameter)
+        private double ExitAngle(UIElement item, double radius)
         {
-            var thickness = LabelThickness();
+            if (Children.Last() == item) return 0.0;
+            return HalfAngle(item.DesiredSize, radius) + Spacing / 2;
+        }
 
-            var y = letter.ActualWidth;
-            y = y == 0 ? BlankWidth() : y;
+        private double HalfAngle(Size size, double radius)
+        {
+            var thickness = (double)GetValue(Halo.ThicknessProperty);
 
-            var height = letter.ActualHeight;
-            var x = diameter - thickness - height;
+            var width = new Vector(
+                Math.Cos(Offset.ToRadians()) * size.Width, 
+                Math.Sin(Offset.ToRadians()) * size.Height
+            ).Length;
 
-            return Math.Atan2(y / 2, x / 2).ToDegrees();
+            var height = new Vector(
+                Math.Sin(Offset.ToRadians()) * size.Width, 
+                Math.Cos(Offset.ToRadians()) * size.Height
+            ).Length;
+
+            return Math.Atan2(
+                width/2, radius - thickness/2 - height/2
+            ).ToDegrees();
         }
 
         #endregion
