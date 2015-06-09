@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Data;
 
 namespace Thorner.RadialControls.Converters
 {
-    class TimeDisplayConverter : IValueConverter
+    public class TimeDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

@@ -113,6 +113,8 @@
     <SDKReference Include="TestPlatform, Version=11.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\TimeDisplayConverterTest.cs" />
+    <Compile Include="Converters\TimeHoursConverterTest.cs" />
     <Compile Include="Utilities\CircleTests.cs" />
     <Compile Include="Utilities\DoubleTests.cs" />
     <Compile Include="Utilities\PointTests.cs" />

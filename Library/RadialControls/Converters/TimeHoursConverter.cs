@@ -21,8 +21,9 @@ namespace Thorner.RadialControls.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             var span = _picker.Time;
+            var newValue = ((double)value + 360) % 360;
 
-            var newHours = (((double) value % 360) / 360) * 12;
+            var newHours = newValue / 360 * 12;
             var offset = WrapPeriod(span, newHours);
 
             return new TimeSpan(
@@ -39,7 +40,7 @@ namespace Thorner.RadialControls.Converters
 
             if ((oldHours > 9) ^ (newHours > 9))
             {
-                if ((oldHours < 3) ^ (newHours < 3))
+                if ((oldHours < 4) ^ (newHours < 4))
                 {
                     return (offset + 12) % 24;
                 }
