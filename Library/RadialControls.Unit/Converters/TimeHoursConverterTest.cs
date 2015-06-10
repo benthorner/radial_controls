@@ -58,7 +58,7 @@ namespace RadialControls.Unit.Converters
 
             Assert.AreEqual(new TimeSpan(9, 15, 0), ConvertBack(270));
 
-            // Extreme case (bounds)
+            // Extreme cases (bounds)
             _picker.Time = new TimeSpan(2, 45, 0);
 
             Assert.AreEqual(new TimeSpan(3, 45, 0), ConvertBack(-270));

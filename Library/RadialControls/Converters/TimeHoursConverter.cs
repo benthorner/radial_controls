@@ -21,9 +21,10 @@ namespace Thorner.RadialControls.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             var span = _picker.Time;
-            var newValue = ((double)value + 360) % 360;
 
+            var newValue = AngleFor((double)value);
             var newHours = newValue / 360 * 12;
+
             var offset = WrapPeriod(span, newHours);
 
             return new TimeSpan(
@@ -47,6 +48,11 @@ namespace Thorner.RadialControls.Converters
             }
 
             return offset;
+        }
+
+        private double AngleFor(double value)
+        {
+            return ((value % 360) + 360) % 360;
         }
 
         #endregion
