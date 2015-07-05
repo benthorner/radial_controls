@@ -10,7 +10,7 @@ namespace Thorner.RadialControls.Controls
 {
     public class HaloSlice : Path
     {
-        #region DependencyProperties
+        #region Dependency Properties
 
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
             "Angle", typeof(double), typeof(HaloSlice), new PropertyMetadata(0.0, Refresh));

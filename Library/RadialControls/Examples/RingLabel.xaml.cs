@@ -11,7 +11,7 @@ namespace Thorner.RadialControls.Examples
 {
     public sealed partial class RingLabel : UserControl
     {
-        #region DependencyProperties
+        #region Dependency Properties
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text", typeof(string), typeof(RingLabel), new PropertyMetadata("", RefreshText));

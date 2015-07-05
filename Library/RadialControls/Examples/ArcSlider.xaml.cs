@@ -19,7 +19,7 @@ namespace Thorner.RadialControls.Examples
             SlideStop += (sender, args) =>
                 VisualStateManager.GoToState(this, "Resting", false);
 
-            SetValue(Controls.Halo.ThicknessProperty, 50.0);
+            SetValue(Controls.Halo.ThicknessProperty, 30.0);
         }
     }
 }

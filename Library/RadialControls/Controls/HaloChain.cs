@@ -11,7 +11,7 @@ namespace Thorner.RadialControls.Controls
 {
     public class HaloChain : HaloRing
     {
-        #region Label DependencyProperties
+        #region Dependency Properties
 
         public static readonly DependencyProperty TensionProperty = DependencyProperty.Register(
             "Tension", typeof(double), typeof(HaloChain), new PropertyMetadata(0.5, Refresh));

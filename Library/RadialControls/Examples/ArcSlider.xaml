@@ -14,7 +14,8 @@
                     RelativeSource={RelativeSource TemplatedParent}}"
                 Offset="{Binding Offset, Mode=TwoWay,
                     RelativeSource={RelativeSource TemplatedParent}}"
-                Stroke="AliceBlue" StrokeThickness="50">
+                Stroke="AliceBlue" StrokeThickness="30" 
+                    StrokeStartLineCap="Round" StrokeEndLineCap="Round">
                 
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">

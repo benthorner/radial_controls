@@ -15,7 +15,7 @@ namespace Thorner.RadialControls.Controls
 
         #endregion
 
-        #region DependencyProperties
+        #region Dependency Properties
 
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
             "Offset", typeof(double), typeof(Slider), new PropertyMetadata(0.0));
@@ -86,7 +86,11 @@ namespace Thorner.RadialControls.Controls
 
         private void StealPointer(object sender, PointerRoutedEventArgs e)
         {
-            SlideStart(this, new SliderEventArgs(Angle));
+            if (SlideStart != null)
+            {
+                SlideStart(this, new SliderEventArgs(Angle));
+            }
+
             CapturePointer(e.Pointer);
         }
 
@@ -105,7 +109,11 @@ namespace Thorner.RadialControls.Controls
         private void ReleasePointer(object sender, PointerRoutedEventArgs e)
         {
             ReleasePointerCapture(e.Pointer);
-            SlideStop(this, new SliderEventArgs(Angle));
+
+            if (SlideStop != null)
+            {
+                SlideStop(this, new SliderEventArgs(Angle));
+            }
         }
 
         #endregion

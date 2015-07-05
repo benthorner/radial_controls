@@ -9,6 +9,120 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <user:RingLabel Text="RADIAL CONTROLS" FontSize="50"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <template:Halo Grid.Row="0" Grid.Column="0" Margin="10">
+            <template:HaloArc Angle="0" Spread="30" Offset="0"
+                              Tension="0" Stroke="Red" StrokeThickness="30"/>
+            <template:HaloArc Angle="0" Spread="15" Offset="30"
+                              Tension="0" Stroke="Yellow" StrokeThickness="30"/>
+            <template:HaloArc Angle="0" Spread="45" Offset="45"
+                              Tension="0" Stroke="Green" StrokeThickness="30"/>
+            <template:HaloArc Angle="0" Spread="90" Offset="90"
+                              Tension="0" Stroke="Blue" StrokeThickness="30"/>
+            <template:HaloArc Angle="90" Spread="90" Offset="90" 
+                              Tension="0" Stroke="Purple" StrokeThickness="30"/>
+            <template:HaloArc Angle="225" Spread="45" Offset="0" 
+                              Tension="0" Stroke="Pink" StrokeThickness="30"/>
+            <template:HaloArc Angle="45" Spread="45" Offset="225" 
+                              Tension="0" Stroke="White" StrokeThickness="30"/>
+            <template:HaloArc Angle="0" Spread="30" Offset="-45" 
+                              Tension="-0.25" Stroke="Gray" StrokeThickness="30"/>
+        </template:Halo>
+
+        <template:Halo Grid.Row="1" Grid.Column="0" Margin="10">
+            <template:HaloChain Angle="0" Spacing="5" Offset="90" Tension="0.5">
+                <TextBlock Text="A" FontSize="20"/>
+                <TextBlock Text="B" FontSize="20"/>
+                <TextBlock Text="C" FontSize="20"/>
+                <TextBlock Text="D" FontSize="20"/>
+                <TextBlock Text="E" FontSize="20"/>
+                <TextBlock Text="F" FontSize="20"/>
+            </template:HaloChain>
+            
+            <template:HaloChain Angle="0" Spacing="5" Offset="-90" Tension="0.5">
+                <TextBlock Text="6" FontSize="20"/>
+                <TextBlock Text="5" FontSize="20"/>
+                <TextBlock Text="4" FontSize="20"/>
+                <TextBlock Text="3" FontSize="20"/>
+                <TextBlock Text="2" FontSize="20"/>
+                <TextBlock Text="1" FontSize="20"/>
+            </template:HaloChain>
+        </template:Halo>
+
+        <template:Halo Grid.Row="2" Grid.Column="0" Margin="10">
+            <template:HaloRing>
+                <Rectangle Width="30" Height="30" Fill="Red"
+                           template:HaloRing.Angle="0" template:HaloRing.Offset="0"/>
+                <Rectangle Width="20" Height="50" Fill="Purple"
+                           template:HaloRing.Angle="45" template:HaloRing.Offset="0"/>
+                <Ellipse Width="20" Height="20" Fill="Blue"
+                           template:HaloRing.Angle="0" template:HaloRing.Offset="90"/>
+                <Rectangle Width="20" Height="20" Fill="Red"
+                           template:HaloRing.Angle="45" template:HaloRing.Offset="90"/>
+                <Ellipse Width="60" Height="20" Fill="Orange"
+                           template:HaloRing.Angle="135" template:HaloRing.Offset="90"/>
+                <Ellipse Width="30" Height="50" Fill="Green"
+                           template:HaloRing.Angle="90" template:HaloRing.Offset="90"/>
+                <Rectangle Width="10" Height="50" Fill="Blue"
+                           template:HaloRing.Angle="180" template:HaloRing.Offset="90"/>
+                <Rectangle Width="20" Height="20" Fill="Yellow"
+                           template:HaloRing.Angle="315" template:HaloRing.Offset="0"/>
+            </template:HaloRing>
+        </template:Halo>
+
+        <template:Halo Grid.Row="1" Grid.Column="1" Margin="10">
+            <user:RingLabel template:Halo.Band="1" 
+                            Text="RADIAL CONTROLS" FontSize="30"/>
+            <user:RingLabel template:Halo.Band="1" 
+                            Text="TEST HARNESS" Flip="True" FontSize="25"/>
+            <user:TimePicker template:Halo.Band="0" Width="300"/>
+        </template:Halo>
+
+        <template:Halo Grid.Row="0" Grid.Column="2" Margin="10">
+            <template:HaloSlice Angle="0" Offset="0" Spread="45" Fill="Red"/>
+            <template:HaloSlice Angle="45" Offset="0" Spread="90" Fill="Purple"/>
+            <template:HaloSlice Angle="90" Offset="45" Spread="30" Fill="Yellow"/>
+            <template:HaloSlice Angle="30" Offset="135" Spread="90" Fill="Green"/>
+            <template:HaloSlice Angle="0" Offset="255" Spread="15" Fill="Blue"/>
+            <template:HaloSlice Angle="-22.5" Offset="-45" Spread="45" Fill="Gray"/>
+        </template:Halo>
+        
+        <template:Halo Grid.Row="1" Grid.Column="2" Margin="10">
+            <template:HaloChain Spacing="30">
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+                <TextBlock Text="?" FontSize="20"/>
+            </template:HaloChain>
+        </template:Halo>
+
+        <template:Halo Grid.Row="2" Grid.Column="2" Margin="10">
+            <template:Slider Angle="0" Offset="0" Background="Red" 
+                             template:Halo.Thickness="40" template:Halo.Band="4"/>
+            <template:Slider Angle="45" Offset="45" Background="Yellow" 
+                             template:Halo.Thickness="30" template:Halo.Band="3"/>
+            <template:Slider Angle="90" Offset="90" Background="Green" 
+                             template:Halo.Thickness="20" template:Halo.Band="2"/>
+            <template:Slider Angle="270" Offset="0" Background="Blue" 
+                             template:Halo.Thickness="10" template:Halo.Band="1"/>
+        </template:Halo>
     </Grid>
 </Page>
