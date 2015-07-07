@@ -23,11 +23,11 @@
 
         <control:Halo Grid.Row="0" Grid.Column="0" Margin="10">
             <control:HaloArc Angle="0" Spread="30" Offset="0"
-                              Tension="0" Stroke="Red" StrokeThickness="30"/>
+                              Tension="0" Stroke="LightSkyBlue" StrokeThickness="30"/>
             <control:HaloArc Angle="0" Spread="15" Offset="30"
-                              Tension="0" Stroke="Yellow" StrokeThickness="30"/>
+                              Tension="0" Stroke="RoyalBlue" StrokeThickness="30"/>
             <control:HaloArc Angle="0" Spread="45" Offset="45"
-                              Tension="0" Stroke="Green" StrokeThickness="30"/>
+                              Tension="0" Stroke="DarkBlue" StrokeThickness="30"/>
             <control:HaloArc Angle="0" Spread="90" Offset="90"
                               Tension="0" Stroke="Blue" StrokeThickness="30"/>
             <control:HaloArc Angle="90" Spread="90" Offset="90" 
@@ -37,7 +37,7 @@
             <control:HaloArc Angle="45" Spread="45" Offset="225" 
                               Tension="0" Stroke="White" StrokeThickness="30"/>
             <control:HaloArc Angle="0" Spread="30" Offset="-45" 
-                              Tension="-0.25" Stroke="Gray" StrokeThickness="30"/>
+                              Tension="-0.25" Stroke="AliceBlue" StrokeThickness="30"/>
         </control:Halo>
 
         <control:Halo Grid.Row="1" Grid.Column="0" Margin="10">
@@ -62,21 +62,21 @@
 
         <control:Halo Grid.Row="2" Grid.Column="0" Margin="10">
             <control:HaloRing>
-                <Rectangle Width="30" Height="30" Fill="Red"
+                <Rectangle Width="30" Height="30" Fill="LightSkyBlue"
                            control:HaloRing.Angle="0" control:HaloRing.Offset="0"/>
-                <Rectangle Width="20" Height="50" Fill="Purple"
+                <Rectangle Width="20" Height="50" Fill="RoyalBlue"
                            control:HaloRing.Angle="45" control:HaloRing.Offset="0"/>
-                <Ellipse Width="20" Height="20" Fill="Blue"
+                <Ellipse Width="20" Height="20" Fill="BlueViolet"
                            control:HaloRing.Angle="0" control:HaloRing.Offset="90"/>
-                <Rectangle Width="20" Height="20" Fill="Red"
+                <Rectangle Width="20" Height="20" Fill="Blue"
                            control:HaloRing.Angle="45" control:HaloRing.Offset="90"/>
-                <Ellipse Width="60" Height="20" Fill="Orange"
+                <Ellipse Width="60" Height="20" Fill="Purple"
                            control:HaloRing.Angle="135" control:HaloRing.Offset="90"/>
-                <Ellipse Width="30" Height="50" Fill="Green"
+                <Ellipse Width="30" Height="50" Fill="White"
                            control:HaloRing.Angle="90" control:HaloRing.Offset="90"/>
-                <Rectangle Width="10" Height="50" Fill="Blue"
+                <Rectangle Width="10" Height="50" Fill="DarkBlue"
                            control:HaloRing.Angle="180" control:HaloRing.Offset="90"/>
-                <Rectangle Width="20" Height="20" Fill="Yellow"
+                <Rectangle Width="20" Height="20" Fill="AliceBlue"
                            control:HaloRing.Angle="315" control:HaloRing.Offset="0"/>
             </control:HaloRing>
         </control:Halo>
@@ -90,12 +90,12 @@
         </control:Halo>
 
         <control:Halo Grid.Row="0" Grid.Column="2" Margin="10">
-            <control:HaloSlice Angle="0" Offset="0" Spread="45" Fill="Red"/>
-            <control:HaloSlice Angle="45" Offset="0" Spread="90" Fill="Purple"/>
-            <control:HaloSlice Angle="90" Offset="45" Spread="30" Fill="Yellow"/>
-            <control:HaloSlice Angle="30" Offset="135" Spread="90" Fill="Green"/>
-            <control:HaloSlice Angle="0" Offset="255" Spread="15" Fill="Blue"/>
-            <control:HaloSlice Angle="-22.5" Offset="-45" Spread="45" Fill="Gray"/>
+            <control:HaloSlice Angle="0" Offset="0" Spread="45" Fill="LightSkyBlue"/>
+            <control:HaloSlice Angle="45" Offset="0" Spread="90" Fill="RoyalBlue"/>
+            <control:HaloSlice Angle="90" Offset="45" Spread="30" Fill="DarkBlue"/>
+            <control:HaloSlice Angle="30" Offset="135" Spread="90" Fill="Purple"/>
+            <control:HaloSlice Angle="0" Offset="255" Spread="15" Fill="White"/>
+            <control:HaloSlice Angle="-22.5" Offset="-45" Spread="45" Fill="AliceBlue"/>
         </control:Halo>
 
         <control:Halo Grid.Row="1" Grid.Column="2" Margin="10">
@@ -115,11 +115,11 @@
         </control:Halo>
 
         <control:Halo Grid.Row="2" Grid.Column="2" Margin="10">
-            <control:Slider Angle="0" Offset="0" Background="Red" 
+            <control:Slider Angle="0" Offset="0" Background="LightSkyBlue" 
                              control:Halo.Thickness="40" control:Halo.Band="4"/>
-            <control:Slider Angle="45" Offset="45" Background="Yellow" 
+            <control:Slider Angle="45" Offset="45" Background="RoyalBlue" 
                              control:Halo.Thickness="30" control:Halo.Band="3"/>
-            <control:Slider Angle="90" Offset="90" Background="Green" 
+            <control:Slider Angle="90" Offset="90" Background="DarkBlue" 
                              control:Halo.Thickness="20" control:Halo.Band="2"/>
             <control:Slider Angle="270" Offset="0" Background="Blue" 
                              control:Halo.Thickness="10" control:Halo.Band="1"/>
