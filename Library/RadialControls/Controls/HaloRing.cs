@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using System.Collections.ObjectModel;
-using Thorner.RadialControls.Utilities;
+using Thorner.RadialControls.Utilities.Extensions;
 
 namespace Thorner.RadialControls.Controls
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using Thorner.RadialControls.Converters;
+using Thorner.RadialControls.Utilities.Converters;
 
-namespace RadialControls.Unit.Converters
+namespace RadialControls.Unit.Utilities.Converters
 {
     [TestClass]
     public class TimeMinutesConverterTest

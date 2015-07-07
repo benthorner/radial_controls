@@ -1,5 +1,5 @@
 ﻿using System;
-using Thorner.RadialControls.Utilities;
+using Thorner.RadialControls.Utilities.Extensions;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;

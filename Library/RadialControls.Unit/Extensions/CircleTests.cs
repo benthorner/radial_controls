@@ -1,9 +1,10 @@
 ﻿
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using Thorner.RadialControls.Utilities;
+using Thorner.RadialControls.Utilities.Extensions;
 using Windows.Foundation;
-namespace RadialControls.Unit.Utilities
+
+namespace RadialControls.Unit.Utilities.Extensions
 {
     [TestClass]
     public class CircleTests

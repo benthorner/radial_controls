@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
-using Thorner.RadialControls.Utilities;
+using Thorner.RadialControls.Utilities.Extensions;
 
-namespace RadialControls.Unit.Utilities
+namespace RadialControls.Unit.Utilities.Extensions
 {
     [TestClass]
     public class DoubleTests

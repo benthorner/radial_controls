@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace Thorner.RadialControls.Converters
+namespace Thorner.RadialControls.Utilities.Converters
 {
     public class TimeHoursConverter : IValueConverter
     {

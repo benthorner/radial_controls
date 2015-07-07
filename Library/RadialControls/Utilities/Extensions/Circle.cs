@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.Foundation;
 
-namespace Thorner.RadialControls.Utilities
+namespace Thorner.RadialControls.Utilities.Extensions
 {
     public class Circle
     {

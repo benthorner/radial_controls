@@ -3,7 +3,7 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
-using Thorner.RadialControls.Utilities;
+using Thorner.RadialControls.Utilities.Extensions;
 using Windows.UI.Xaml.Data;
 
 namespace Thorner.RadialControls.Controls

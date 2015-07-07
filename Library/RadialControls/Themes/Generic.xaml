@@ -1,32 +1,30 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Thorner.RadialControls.Controls"
-    xmlns:converters="using:Thorner.RadialControls.Converters"
-    xmlns:controls="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:controls1="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    xmlns:control="using:Thorner.RadialControls.Controls"
+    xmlns:converters="using:Thorner.RadialControls.Converters">
 
-    <Style TargetType="local:Slider">
+    <Style TargetType="control:Slider">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:Slider">
-                    <local:HaloRing>
-                        <Grid local:HaloRing.Angle="{Binding Angle, Mode=TwoWay,
+                <ControlTemplate TargetType="control:Slider">
+                    <control:HaloRing>
+                        <Grid control:HaloRing.Angle="{Binding Angle, Mode=TwoWay,
                                   RelativeSource={RelativeSource TemplatedParent}}"
-                              local:HaloRing.Offset="{Binding Offset, Mode=TwoWay,
+                              control:HaloRing.Offset="{Binding Offset, Mode=TwoWay,
                                   RelativeSource={RelativeSource TemplatedParent}}">
                             <ContentControl Template="{TemplateBinding Thumb}"
-                                Width="{TemplateBinding local:Halo.Thickness}"
-                                Height="{TemplateBinding local:Halo.Thickness}"
+                                Width="{TemplateBinding control:Halo.Thickness}"
+                                Height="{TemplateBinding control:Halo.Thickness}"
                                 Background="{TemplateBinding Background}"/>
                         </Grid>
-                    </local:HaloRing>
+                    </control:HaloRing>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         
         <Setter Property="Background" Value="AliceBlue"/>
-        <Setter Property="local:Halo.Thickness" Value="50"/>
+        <Setter Property="control:Halo.Thickness" Value="50"/>
         
         <Setter Property="Thumb">
             <Setter.Value>

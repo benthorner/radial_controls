@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Thorner.RadialControls.Utilities
+namespace Thorner.RadialControls.Utilities.Extensions
 {
     public struct Vector
     {
