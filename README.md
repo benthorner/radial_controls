@@ -77,8 +77,8 @@ The HaloArc also has an Offset property, which is added to the Angle to determin
 
 Draw two semi-circles (white and black), where the line of symmetry is vertical. Again, I assume an appropriate parent panel.
 
-   <control:HaloSlice Offset="90" Spread="180" Fill="White"/>
-   <control:HaloSlice Offset="90" Angle="180" Spread="180" Fill="White"/>
+    <control:HaloSlice Offset="90" Spread="180" Fill="White"/>
+    <control:HaloSlice Offset="90" Angle="180" Spread="180" Fill="White"/>
 
 In general, Offset means origin - where to start drawing, and Angle means a rotation about the centre, starting from the Offset.
 
@@ -86,13 +86,12 @@ In general, Offset means origin - where to start drawing, and Angle means a rota
 
 Draw a slider with a rectangular thumb. Take a look at Examples/ArcSlider for a slicker version of this control.
 
-   <control:Slider Angle="{Binding SomeProperty}">
-      <control:Slider.Thumb>
-         <ControlTemplate>
-            <Rectangle Width="30" Height="30" Fill="White"/>
-         </ControlTemplate>
-      </control:Slider.Thumb>
-   </control:Slider>
+    <control:Slider Angle="{Binding SomeProperty}">
+       <control:Slider.Thumb>
+          <ControlTemplate>
+             <Rectangle Width="30" Height="30" Fill="White"/>
+          </ControlTemplate>
+       </control:Slider.Thumb>
+    </control:Slider>
 
 The Slider control also has an Offset property to set where the zero Angle should be (vertical up by default).
-          
