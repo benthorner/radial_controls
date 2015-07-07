@@ -14,7 +14,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="2*"/>
@@ -49,7 +49,7 @@
                 <TextBlock Text="E" FontSize="20"/>
                 <TextBlock Text="F" FontSize="20"/>
             </template:HaloChain>
-            
+
             <template:HaloChain Angle="0" Spacing="5" Offset="-90" Tension="0.5">
                 <TextBlock Text="6" FontSize="20"/>
                 <TextBlock Text="5" FontSize="20"/>
@@ -97,7 +97,7 @@
             <template:HaloSlice Angle="0" Offset="255" Spread="15" Fill="Blue"/>
             <template:HaloSlice Angle="-22.5" Offset="-45" Spread="45" Fill="Gray"/>
         </template:Halo>
-        
+
         <template:Halo Grid.Row="1" Grid.Column="2" Margin="10">
             <template:HaloChain Spacing="30">
                 <TextBlock Text="?" FontSize="20"/>
