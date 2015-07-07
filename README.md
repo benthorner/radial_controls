@@ -52,7 +52,7 @@ Alternatively, you can use the Offset property, which will place the child at a 
 
 ### HaloChain ###
 
-Draw a circular label, centred at 0 degrees. Take a look at the RingLabel user control for an out-of-the-box label control.
+Draw a circular label, centred at 0 degrees. Take a look at Examples/RingLabel for an out-of-the-box label control.
 
     <control:HaloChain Tension="0.5" Spacing="10">
         <TextBlock Text="H" FontSize="30"/>
@@ -60,3 +60,39 @@ Draw a circular label, centred at 0 degrees. Take a look at the RingLabel user c
         <TextBlock Text="L" FontSize="30"/>
         <TextBlock Text="L" FontSize="30"/>
         <TextBlock Text="O" FontSize="30"/>
+    </control:HaloChain>
+
+The HaloChain also has Angle and Offset properties, which behave the same as for HaloRing, but apply to the chain as a whole.
+
+### HaloArc ###
+
+Draw two half-rings (white and black), centred at 0 and 180 degrees. I've assumed the arcs are inside a Grid or Halo panel.
+
+    <control:HaloArc Spread="180" Tension="0.5" Stroke="White" StrokeThickness="30"/>
+    <control:HaloArc Angle="180" Spread="180" Tension="0.5" Stroke="Black" StrokeThickness="30"/>
+
+The HaloArc also has an Offset property, which is added to the Angle to determine where to start drawing.
+
+### HaloSlice ###
+
+Draw two semi-circles (white and black), where the line of symmetry is vertical. Again, I assume an appropriate parent panel.
+
+   <control:HaloSlice Offset="90" Spread="180" Fill="White"/>
+   <control:HaloSlice Offset="90" Angle="180" Spread="180" Fill="White"/>
+
+In general, Offset means origin - where to start drawing, and Angle means a rotation about the centre, starting from the Offset.
+
+### Slider ###
+
+Draw a slider with a rectangular thumb. Take a look at Examples/ArcSlider for a slicker version of this control.
+
+   <control:Slider Angle="{Binding SomeProperty}">
+      <control:Slider.Thumb>
+         <ControlTemplate>
+            <Rectangle Width="30" Height="30" Fill="White"/>
+         </ControlTemplate>
+      </control:Slider.Thumb>
+   </control:Slider>
+
+The Slider control also has an Offset property to set where the zero Angle should be (vertical up by default).
+          
