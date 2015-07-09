@@ -44,7 +44,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Examples\RingLabel.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Examples\TimePicker.xaml">
