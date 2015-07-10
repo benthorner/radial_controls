@@ -78,7 +78,7 @@ The HaloArc also has an Offset property, which is added to the Angle to determin
 Draw two semi-circles (white and black), where the line of symmetry is vertical. Again, I assume an appropriate parent panel.
 
     <control:HaloSlice Offset="90" Spread="180" Fill="White"/>
-    <control:HaloSlice Offset="90" Angle="180" Spread="180" Fill="White"/>
+    <control:HaloSlice Offset="90" Angle="180" Spread="180" Fill="Black"/>
 
 In general, Offset means origin - where to start drawing, and Angle means a rotation about the centre, starting from the Offset.
 
