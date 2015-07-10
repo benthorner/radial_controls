@@ -32,7 +32,7 @@ Draw three concentric bands (red, green and blue). The Halo will occupy all the 
     <control:Halo>
         <control:HaloArc StrokeThickness="30" Stroke="Red" control:Halo.Band="3"/>
         <control:HaloArc StrokeThickness="30" Stroke="Green" control:Halo.Band="2"/>
-        <control:HaloSlice Stroke="Blue">
+        <control:HaloSlice Stroke="Blue"/>
     </control:Halo>
 
 Any children which are not in a band will be placed in the centre of the halo. Controls can share a band.
