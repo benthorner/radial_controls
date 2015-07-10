@@ -119,7 +119,7 @@ namespace Thorner.RadialControls.Controls
         {
             var slice = (HaloSlice)o;
 
-            if (Math.Round(slice.Spread / 360) != 0)
+            if (Math.Floor(slice.Spread / 360) != 0)
             {
                 slice.Data = slice.ellipse;
             }
@@ -141,7 +141,9 @@ namespace Thorner.RadialControls.Controls
             sliceEnd.Point = circle.Center;
 
             arcSegment.Point = circle.PointAt(Angle + Offset + Spread);
+
             arcSegment.Size = circle.Size();
+            arcSegment.IsLargeArc = (Spread > 180);
         }
 
         private void ArrangeEllipse(Circle circle)

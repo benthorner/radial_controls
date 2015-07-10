@@ -135,6 +135,7 @@ namespace Thorner.RadialControls.Controls
             segment.Point = circle.PointAt(endAngle);
 
             segment.Size = circle.Size();
+            segment.IsLargeArc = (Spread > 180);
         }
 
         #endregion
