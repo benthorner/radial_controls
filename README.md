@@ -27,13 +27,13 @@ The Slider control can also be used inside a Halo.
 
 ### Halo ###
 
-Draw three concentric bands (red, green and blue). The Halo will occupy all the space given to it.
+Draw three concentric bands (white, black and white). The Halo will occupy all the space given to it.
 
-    <control:Halo>
-        <control:HaloArc StrokeThickness="30" Stroke="Red" control:Halo.Band="3"/>
-        <control:HaloArc StrokeThickness="30" Stroke="Green" control:Halo.Band="2"/>
-        <control:HaloSlice Stroke="Blue"/>
-    </control:Halo>
+     <control:Halo Grid.Row="0" Grid.Column="0" Margin="10">
+         <control:HaloSlice Fill="White" control:Halo.Thickness="10" control:Halo.Band="2"/>
+         <control:HaloSlice Fill="Black" control:Halo.Thickness="20" control:Halo.Band="1"/>
+         <control:HaloSlice Fill="White" control:Halo.Thickness="10"/>
+     </control:Halo>
 
 Any children which are not in a band will be placed in the centre of the halo. Controls can share a band.
 
