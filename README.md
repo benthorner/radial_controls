@@ -21,7 +21,7 @@ In Visual Studio, create a blank Windows 8.1 or Windows Universal app.
   * When the package manager appears, search for RadialControls.
   * Click 'Install' and follow the prompts
 
-That's it! You should now be ready to make something...
+That's it! You should now have the tools you need to make something...
 
 ### Make Something ###
 
