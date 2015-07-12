@@ -1,5 +1,7 @@
 # RadialControls #
 
+![Example of radial controls in use](https://raw.githubusercontent.com/benthorner/radial_controls/master/RadialControls.PNG)
+
 Circular controls library for Windows 8 Apps.
 
   * Chains - for circular text
@@ -11,7 +13,7 @@ The library also contains some ready-made examples.
 
 ## Installation ##
 
-RadialControls is available as a NuGet package.
+RadialControls is available as a [NuGet package](https://www.nuget.org/packages/RadialControls).
 
 ### Getting Started ###
 
