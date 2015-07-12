@@ -13,7 +13,7 @@ The library also contains some ready-made examples.
 
 TODO
 
-## Usage ##
+## Usage (Controls) ##
 
 There are 3 main types of control (hardest first).
 
@@ -95,3 +95,32 @@ Draw a slider with a rectangular thumb. Take a look at Examples/ArcSlider for a 
     </control:Slider>
 
 The Slider control also has an Offset property to set where the zero Angle should be (vertical up by default).
+
+## Usage (Examples) ##
+
+The library includes several examples of extending the basic controls.
+
+### ArcSlider ### 
+
+Restyles the basic slider using a HaloArc.
+
+    <example:ArcSlider Offset="90" Angle="0"/>
+
+This example also adds click animation to make the slider feel like a button.
+
+### RingLabel ###
+
+Wraps a HaloChain to provide a simple control for displaying circular text.
+
+    <example:RingLabel Text="HELLO"/>
+    <example:RingLabel Text="WORLD" Flip="True"/>
+
+The text is displayed either at the top or the bottom of a circle using the Flip property.
+
+### TimePicker ###
+
+Combines several basic controls to form a time picker.
+
+    <example:TimePicker Time="{Binding SomeTimeSpan}"/>
+
+Converters are used to adjust the hour/period when the hands wrap, and to display the time.
