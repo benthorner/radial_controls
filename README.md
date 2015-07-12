@@ -125,9 +125,9 @@ The Slider control also has an Offset property to set where the zero Angle shoul
 
 The library includes several examples of extending the basic controls.
 
-### ArcSlider ### 
+### ArcSlider ###
 
-Restyles the basic slider using a HaloArc.
+Restyles the basic Slider control using a HaloArc.
 
     <example:ArcSlider Offset="90" Angle="0"/>
 
