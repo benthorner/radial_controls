@@ -11,9 +11,34 @@ The library also contains some ready-made examples.
 
 ## Installation ##
 
-TODO
+RadialControls is available as a NuGet package.
 
-## Usage ##
+### Getting Started ###
+
+In Visual Studio, create a blank Windows 8.1 or Windows Universal app.
+
+  * Right click on the project and click 'Manage NuGet Packages...'
+  * When the package manager appears, search for RadialControls.
+  * Click 'Install' and follow the prompts
+
+That's it! You now have the tools you need to make something...
+
+### Make Something ###
+
+In MainPage.xaml, add the following namespace declarations for the Page.
+
+    xmlns:control="using:Thorner.RadialControls.Controls"
+    xmlns:example="using:Thorner.RadialControls.Examples"
+
+Now go ahead and make some controls inside the Grid panel e.g.
+
+    <Grid>
+      <example:TimePicker/>
+    </Grid>
+
+You may get a 'XAML parsing failed' warning (doesn't seem to matter!).
+
+## Usage (Controls) ##
 
 There are 3 main types of control (hardest first).
 
@@ -95,3 +120,32 @@ Draw a slider with a rectangular thumb. Take a look at Examples/ArcSlider for a 
     </control:Slider>
 
 The Slider control also has an Offset property to set where the zero Angle should be (vertical up by default).
+
+## Usage (Examples) ##
+
+The library includes several examples of extending the basic controls.
+
+### ArcSlider ###
+
+Restyles the basic Slider control using a HaloArc.
+
+    <example:ArcSlider Offset="90" Angle="0"/>
+
+This example also adds click animation to make the slider feel like a button.
+
+### RingLabel ###
+
+Wraps a HaloChain to provide a simple control for displaying circular text.
+
+    <example:RingLabel Text="HELLO" FontSize="30"/>
+    <example:RingLabel Text="WORLD" Flip="True" FontSize="30"/>
+
+The text is displayed either at the top or the bottom of a circle using the Flip property.
+
+### TimePicker ###
+
+Combines several basic controls to form a time picker.
+
+    <example:TimePicker Time="{Binding SomeTimeSpan}"/>
+
+Converters are used to adjust the hour/period when the hands wrap, and to display the time.
