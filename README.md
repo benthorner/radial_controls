@@ -11,7 +11,32 @@ The library also contains some ready-made examples.
 
 ## Installation ##
 
-TODO
+RadialControls is available as a NuGet package.
+
+### Getting Started ###
+
+In Visual Studio, create a blank Windows 8.1 or Windows Universal app.
+
+  * Right click on the project and click 'Manage NuGet Packages...'
+  * When the package manager appears, search for RadialControls.
+  * Click 'Install' and follow the prompts
+
+That's it!
+
+### Make Something ###
+
+In MainPage.xaml, add the following namespace declarations for the Page.
+
+    xmlns:control="using:Thorner.RadialControls.Controls"
+    xmlns:example="using:Thorner.RadialControls.Examples"
+
+Now go ahead and make some controls inside the Grid panel e.g.
+
+    <Grid>
+      <example:TimePicker/>
+    </Grid>
+
+You may get a 'XAML parsing failed' warning (doesn't seem to matter!).
 
 ## Usage (Controls) ##
 
@@ -112,8 +137,8 @@ This example also adds click animation to make the slider feel like a button.
 
 Wraps a HaloChain to provide a simple control for displaying circular text.
 
-    <example:RingLabel Text="HELLO"/>
-    <example:RingLabel Text="WORLD" Flip="True"/>
+    <example:RingLabel Text="HELLO" FontSize="30"/>
+    <example:RingLabel Text="WORLD" Flip="True" FontSize="30"/>
 
 The text is displayed either at the top or the bottom of a circle using the Flip property.
 
