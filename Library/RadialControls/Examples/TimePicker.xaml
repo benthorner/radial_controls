@@ -1,5 +1,5 @@
 ﻿<!--
-   RadialControls - A circular controls library for Windows 8 Apps
+   controlControls - A circular controls library for Windows 8 Apps
    Copyright (C) Ben Thorner 2015
  
    This program is free software: you can redistribute it and/or modify
@@ -23,18 +23,18 @@
     xmlns:local="using:Thorner.RadialControls.Examples"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:radial="using:Thorner.RadialControls.Controls">
+    xmlns:control="using:Thorner.RadialControls.Controls">
 
-    <radial:Halo>
-        <radial:HaloSlice Fill="LightSkyBlue" radial:Halo.Band="2"/>
-        <local:ArcSlider x:Name="Minutes" radial:Halo.Band="2"/>
+    <control:Halo>
+        <control:HaloSlice Fill="DeepSkyBlue" control:Halo.Band="2"/>
+        <local:ArcSlider x:Name="Minutes" control:Halo.Band="2"/>
 
-        <radial:HaloSlice Fill="RoyalBlue" radial:Halo.Band="1"/>
-        <local:ArcSlider x:Name="Hours" radial:Halo.Band="1"/>
+        <control:HaloSlice Fill="RoyalBlue" control:Halo.Band="1"/>
+        <local:ArcSlider x:Name="Hours" control:Halo.Band="1"/>
         
-        <radial:HaloSlice Fill="DarkBlue"/>
+        <control:HaloSlice Fill="Black"/>
         
-        <TextBlock x:Name="Display" FontSize="30"  FontWeight="SemiBold"
+        <TextBlock x:Name="Display" FontSize="30" FontWeight="SemiBold"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
-    </radial:Halo>
+    </control:Halo>
 </UserControl>

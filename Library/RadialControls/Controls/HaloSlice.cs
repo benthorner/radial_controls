@@ -62,13 +62,6 @@ namespace Thorner.RadialControls.Controls
             path.Figures = new PathFigureCollection { arcFigure };
 
             Data = ellipse;
-
-            BindingOperations.SetBinding(this, Halo.ThicknessProperty,
-                new Binding
-                {
-                    Source = this, Mode = BindingMode.TwoWay,
-                    Path = new PropertyPath("StrokeThickness"),
-                });
         }
 
         #region Properties

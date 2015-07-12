@@ -16,18 +16,18 @@
    along with this program.If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<radial:Slider
+<control:Slider
     x:Class="Thorner.RadialControls.Examples.ArcSlider"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:radial="using:Thorner.RadialControls.Controls"
+    xmlns:control="using:Thorner.RadialControls.Controls"
     xmlns:local="using:Thorner.RadialControls.Examples"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
-    <radial:Slider.Template>
+    <control:Slider.Template>
         <ControlTemplate>
-            <radial:HaloArc x:Name="Arc" Tension="0.5" Spread="20"
+            <control:HaloArc x:Name="Arc" Tension="0.5" Spread="20"
                 Angle="{Binding Angle, Mode=TwoWay,
                     RelativeSource={RelativeSource TemplatedParent}}"
                 Offset="{Binding Offset, Mode=TwoWay,
@@ -54,7 +54,7 @@
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
-            </radial:HaloArc>
+            </control:HaloArc>
         </ControlTemplate>
-    </radial:Slider.Template>
-</radial:Slider>
+    </control:Slider.Template>
+</control:Slider>

@@ -34,7 +34,7 @@ namespace Thorner.RadialControls.Controls
             "Angle", typeof(double), typeof(HaloArc), new PropertyMetadata(0.0, Refresh));
 
         public static readonly DependencyProperty SpreadProperty = DependencyProperty.Register(
-            "Spread", typeof(double), typeof(HaloArc), new PropertyMetadata(360.0, Refresh));
+            "Spread", typeof(double), typeof(HaloArc), new PropertyMetadata(90.0, Refresh));
 
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
             "Offset", typeof(double), typeof(HaloArc), new PropertyMetadata(0.0, Refresh));

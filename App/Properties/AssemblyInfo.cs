@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("App")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Test harness for RadialControls")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("App")]
+[assembly: AssemblyCompany("Thorner")]
+[assembly: AssemblyProduct("RadialControls")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

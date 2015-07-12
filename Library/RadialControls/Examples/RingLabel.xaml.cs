@@ -38,7 +38,12 @@ namespace Thorner.RadialControls.Examples
 
         public RingLabel()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            BindingOperations.SetBinding(this, Halo.ThicknessProperty, new Binding
+            {
+                Source = this, Path = new PropertyPath("FontSize"), Mode = BindingMode.TwoWay
+            });
         }
 
         #region Properties
@@ -62,7 +67,7 @@ namespace Thorner.RadialControls.Examples
         private static void RefreshFlip(object o, DependencyPropertyChangedEventArgs e)
         {
             var label = (RingLabel)o;
-            var chain = (HaloChain)label.Chain;
+            var chain = label.Chain;
 
             if (label.Flip)
             {
@@ -79,7 +84,7 @@ namespace Thorner.RadialControls.Examples
         private static void RefreshText(object o, DependencyPropertyChangedEventArgs e)
         {
             var label = (RingLabel)o;
-            var chain = (HaloChain)label.Chain;
+            var chain = label.Chain;
 
             chain.Children.Clear();
 

@@ -35,7 +35,7 @@ namespace Thorner.RadialControls.Examples
 
         public TimePicker()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             BindingOperations.SetBinding(Hours, ArcSlider.AngleProperty, new Binding
             {
