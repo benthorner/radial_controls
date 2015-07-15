@@ -140,18 +140,14 @@ namespace Thorner.RadialControls.Controls
 
         private double SliderAngle(PointerRoutedEventArgs e)
         {
-            var parent = Parent as FrameworkElement;
-            if (parent == null) return 0.0;
-
-            var point = e.GetCurrentPoint(parent).Position;
-
             var centre = new Point(
-                parent.ActualWidth / 2, parent.ActualHeight / 2
+                ActualWidth / 2, ActualHeight / 2
             );
 
-            var thumb = point.RelativeTo(centre);
-            var vertical = new Vector(0, -1);
+            var thumb = e.GetCurrentPoint(this)
+                .Position.RelativeTo(centre);
 
+            var vertical = new Vector(0, -1);
             return thumb.AngleTo(vertical);
         }
 
