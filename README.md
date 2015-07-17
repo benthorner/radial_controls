@@ -2,12 +2,13 @@
 
 ![Example of radial controls in use](https://raw.githubusercontent.com/benthorner/radial_controls/master/RadialControls.PNG)
 
-Circular controls library for Windows 8 Apps.
+A circular controls library for Windows 8 Apps.
 
   * Chains - for circular text
   * Sliders - for time pickers
   * Arcs - for doughnut charts
   * Slices - for pie charts
+  * Rings - for jewelry
 
 The library also contains some ready-made examples.
 
@@ -102,12 +103,12 @@ The HaloArc also has an Offset property, which is added to the Angle to determin
 
 ### HaloSlice ###
 
-Draw two semi-circles (white and black), where the line of symmetry is vertical. Again, I assume an appropriate parent panel.
+Draw two semi-circles (white and black), where the line of symmetry is horizontal. Again, I assume an appropriate parent panel.
 
     <control:HaloSlice Offset="90" Spread="180" Fill="White"/>
     <control:HaloSlice Offset="90" Angle="180" Spread="180" Fill="Black"/>
 
-In general, Offset means origin - where to start drawing, and Angle means a rotation about the centre, starting from the Offset.
+In general, _offset_ means origin - where to start drawing, and _angle_ means a rotation about the centre, starting from the offset.
 
 ### Slider ###
 
