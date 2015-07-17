@@ -26,13 +26,13 @@
     xmlns:control="using:Thorner.RadialControls.Controls">
 
     <control:Halo>
-        <control:HaloSlice Fill="DeepSkyBlue" control:Halo.Band="2"/>
+        <control:HaloDisc Fill="DeepSkyBlue" control:Halo.Band="2"/>
         <local:ArcSlider x:Name="Minutes" control:Halo.Band="2"/>
 
-        <control:HaloSlice Fill="RoyalBlue" control:Halo.Band="1"/>
+        <control:HaloDisc Fill="RoyalBlue" control:Halo.Band="1"/>
         <local:ArcSlider x:Name="Hours" control:Halo.Band="1"/>
         
-        <control:HaloSlice Fill="Black"/>
+        <control:HaloDisc Fill="Black"/>
         
         <TextBlock x:Name="Display" FontSize="30" FontWeight="SemiBold"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>

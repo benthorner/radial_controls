@@ -42,7 +42,6 @@ namespace Thorner.RadialControls.Controls
         #endregion
 
         private PathGeometry path = new PathGeometry();
-        private EllipseGeometry ellipse = new EllipseGeometry();
 
         private LineSegment sliceStart = new LineSegment();
         private LineSegment sliceEnd = new LineSegment();
@@ -61,7 +60,7 @@ namespace Thorner.RadialControls.Controls
 
             path.Figures = new PathFigureCollection { arcFigure };
 
-            Data = ellipse;
+            Data = path;
         }
 
         #region Properties
@@ -99,8 +98,6 @@ namespace Thorner.RadialControls.Controls
             circle.Radius -= StrokeThickness / 2;
 
             ArrangePath(circle);
-            ArrangeEllipse(circle);
-
             return finalSize;
         }
 
@@ -110,16 +107,8 @@ namespace Thorner.RadialControls.Controls
 
         private static void Refresh(object o, DependencyPropertyChangedEventArgs e)
         {
-            var slice = (HaloSlice)o;
-
-            if (Math.Floor(slice.Spread / 360) != 0)
-            {
-                slice.Data = slice.ellipse;
-            }
-            else
-            {
-                slice.Data = slice.path;
-            }
+            ((HaloSlice)o).InvalidateMeasure();
+            ((HaloSlice)o).UpdateLayout();
         }
 
         #endregion
@@ -137,13 +126,6 @@ namespace Thorner.RadialControls.Controls
 
             arcSegment.Size = circle.Size();
             arcSegment.IsLargeArc = (Spread > 180);
-        }
-
-        private void ArrangeEllipse(Circle circle)
-        {
-            ellipse.Center = circle.Center;
-            ellipse.RadiusX = circle.Radius;
-            ellipse.RadiusY = circle.Radius;
         }
 
         #endregion

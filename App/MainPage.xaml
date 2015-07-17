@@ -40,9 +40,9 @@
         </Grid.ColumnDefinitions>
 
         <control:Halo Grid.Row="0" Grid.Column="0" Margin="5">
-            <control:HaloSlice Fill="White" control:Halo.Thickness="10" control:Halo.Band="2"/>
-            <control:HaloSlice Fill="Black" control:Halo.Thickness="20" control:Halo.Band="1"/>
-            <control:HaloSlice Fill="White" control:Halo.Thickness="10"/>
+            <control:HaloDisc Fill="White" control:Halo.Thickness="10" control:Halo.Band="2"/>
+            <control:HaloDisc Fill="Black" control:Halo.Thickness="20" control:Halo.Band="1"/>
+            <control:HaloDisc Fill="White" control:Halo.Thickness="10"/>
         </control:Halo>
 
         <control:Halo Grid.Row="1" Grid.Column="0" Margin="5">

@@ -25,7 +25,7 @@ namespace Thorner.RadialControls.Examples
     {
         public ArcSlider()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             VisualStateManager.GoToState(this, "Resting", false);
 

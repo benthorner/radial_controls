@@ -8,6 +8,7 @@ A circular controls library for Windows 8 Apps.
   * Sliders - for time pickers
   * Arcs - for doughnut charts
   * Slices - for pie charts
+  * Discs - for circular fills
   * Rings - for jewelry
 
 The library also contains some ready-made examples.
@@ -58,9 +59,9 @@ The Slider control can also be used inside a Halo.
 Draw three concentric bands (white, black and white). The Halo will occupy all the space given to it.
 
      <control:Halo Grid.Row="0" Grid.Column="0" Margin="10">
-         <control:HaloSlice Fill="White" control:Halo.Thickness="10" control:Halo.Band="2"/>
-         <control:HaloSlice Fill="Black" control:Halo.Thickness="20" control:Halo.Band="1"/>
-         <control:HaloSlice Fill="White" control:Halo.Thickness="10"/>
+         <control:HaloDisc Fill="White" control:Halo.Thickness="10" control:Halo.Band="2"/>
+         <control:HaloDisc Fill="Black" control:Halo.Thickness="20" control:Halo.Band="1"/>
+         <control:HaloDisc Fill="White" control:Halo.Thickness="10"/>
      </control:Halo>
 
 Any children which are not in a band will be placed in the centre of the halo. Controls can share a band.

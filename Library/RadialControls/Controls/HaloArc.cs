@@ -105,7 +105,6 @@ namespace Thorner.RadialControls.Controls
             circle.Radius -= StrokeThickness / 2;
 
             ArrangePath(circle);
-
             return finalSize;
         }
 
